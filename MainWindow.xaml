@@ -5,8 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="768" Width="1364">
+	<Window.Resources>
+		<!-- Add your styles and other resources here -->
+		<Style x:Key="SidebarButton" TargetType="Button">
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="Padding" Value="10"/>
+		</Style>
+	</Window.Resources>
 
-    </Grid>
+	<Grid Background="#FF2C2C2C">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="200"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<!-- Sidebar -->
+		<StackPanel Grid.Column="0" Background="#FF1E1E1E">
+			<Button Content="Check" Style="{StaticResource SidebarButton}" />
+			<Button Content="Machine Activity" Style="{StaticResource SidebarButton}" />
+			<Button Content="Stats" Style="{StaticResource SidebarButton}" />
+			<Button Content="Settings" Style="{StaticResource SidebarButton}" />
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Grid Grid.Column="1" Margin="10">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="4*"/>
+				<RowDefinition Height="5*"/>
+				<RowDefinition Height="2*"/>
+			</Grid.RowDefinitions>
+
+			<!-- Bar Chart Area -->
+			<Border Background="White" Grid.Row="0" CornerRadius="5" Margin="5">
+				<!-- Insert Bar Chart Control Here -->
+				<TextBlock Text="Bar Chart Placeholder" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			</Border>
+
+			<!-- Status Indicators Area -->
+			<ItemsControl Grid.Row="1" ItemsSource="{Binding StatusIndicators}" Margin="5">
+				<!-- Define the item template for status indicators -->
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border Width="100" Height="100" CornerRadius="50" Background="{Binding Color}" Margin="5">
+							<TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+				<!-- Define the layout for items -->
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+
+			<!-- Bottom Area -->
+			<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+				<!-- Insert additional controls or information here -->
+				<Ellipse Width="150" Height="150" Fill="Blue" Margin="5"/>
+				<Rectangle Width="300" Height="150" Fill="Green" Margin="5"/>
+			</StackPanel>
+		</Grid>
+	</Grid>
 </Window>
+
