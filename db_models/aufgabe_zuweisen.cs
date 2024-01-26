@@ -11,6 +11,7 @@ namespace MMS.db_models
         public int Auftrags_ID { get; set; } // Fremdschlüssel
         public int Facharbeiter_ID { get; set; } // Fremdschlüssel
         public int Vorgesetzer_ID { get; set; } // Fremdschlüssel
+        public int Eintrag { get; set; } //Autoincrement
     }
 
 }

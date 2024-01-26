@@ -28,7 +28,27 @@ namespace MMS.db_models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Hier können Sie weitere Konfigurationen für Ihre Modelle definieren.
+            modelBuilder.Entity<Aufgabe_Zuweisung>()
+            .HasKey(a => a.Eintrag); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
+
+            modelBuilder.Entity<Auftraege>()
+            .HasKey(a => a.Auftrags_ID); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
+
+            modelBuilder.Entity<Facharbeiter>()
+            .HasKey(a => a.Facharbeiter_ID); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
+
+            modelBuilder.Entity<Lehrgang>()
+            .HasKey(a => a.Lehrgang_ID); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
+
+            modelBuilder.Entity<Lehrgang_Zuweisung>()
+            .HasKey(a => a.Eintrag); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
+
+            modelBuilder.Entity<Maschinen>()
+            .HasKey(a => a.Maschinen_ID); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
+
+            modelBuilder.Entity<Vorgesetzter>()
+            .HasKey(a => a.ID_Vorgesetzer); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
+
         }
     }
 }

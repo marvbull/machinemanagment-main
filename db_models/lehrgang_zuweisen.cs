@@ -10,6 +10,7 @@ namespace MMS.db_models
     {
         public int Lehrgang_ID { get; set; }
         public int ID_Facharbeiter { get; set; } //Fremdschlüssel
+        public int Eintrag { get; set; } //Auto-Increment & Primary key
     }
 
 }
