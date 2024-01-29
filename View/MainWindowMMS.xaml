@@ -3,16 +3,142 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:icon="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:MMS.View"
         mc:Ignorable="d"
-        Title="MainWindowMMS" Height="450" Width="800">
-    <Border>
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="MainWindowMMS" Height="700" Width="1300">
+
+
+    < CornerRadius="10" BorderThickness="1">
+
+        <!--Border-->
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="Black" Offset="0.5"/>
-                <GradientStop Color="Red" Offset="1"/>
+                <GradientStop Color="{StaticResource DarkSlate}" Offset="0"/>
+                <GradientStop Color="{StaticResource DeepSeaBlue}" Offset="0.5"/>
+                <GradientStop Color="{StaticResource DeepSeaBlue}" Offset="1"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
-    </Border>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border CornerRadius="10,0,0,10" Grid.Column="0">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                        <GradientStop Color="{StaticResource DarkSlate}" Offset="0" />
+                        <GradientStop Color="{StaticResource DarkSlate}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="35"
+                                Margin="25,25,0,40">
+                        <!--<Image Source="/Images/WMF100_neg.png" Height="30" />-->
+                        <icon:IconImage Icon="Computer"/>
+                        <TextBlock Text="EASY UPLOAD"
+                                   Foreground="{StaticResource TextLightGrayish}"
+                                   FontFamily="WMF Rotis Regular"
+                                   FontSize="20"
+                                   FontWeight="Medium"
+                                   Margin="15,0,0,0"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource BackgroundFreshGreen}"
+                                 IsChecked="true" >
+                        <!-- Command="{Binding ShowIPConnectionViewCommand}"-->
+
+                        <StackPanel Orientation="Horizontal">
+                            <icon:IconImage Icon="Search" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Check" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource BackgroundVibrantPink}">
+                        <!-- Command="{Binding ShowMachineListViewCommand}"-->
+
+                        <StackPanel Orientation="Horizontal">
+                            <icon:IconImage Icon="StackExchange" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Maschinen Aktivitäten" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource BackgroundVibrantPink}">
+                        <!-- Command="{Binding ShowMachineListViewCommand}"-->
+
+                        <StackPanel Orientation="Horizontal">
+                            <icon:IconImage Icon="ScaleBalanced" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Vorgang anlegen" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+            </Border>
+
+            <!--Main Content Section-->
+            <Border CornerRadius="0,10,10,0" Grid.Column="2">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource DeepSeaBlue}" Offset="0.5" />
+                        <GradientStop Color="{StaticResource DeepSeaBlue}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!--Control bar-->
+                        <RowDefinition Height="25"/>
+                        <!--Header / Caption -->
+                        <RowDefinition Height="35"/>
+                        <!--Content section /Child views-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+
+                <StackPanel x:Name="pnlControlBar"
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft"
+                            Background="Transparent"
+                            Margin="0,0,5,0"
+                            MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                            MouseEnter="pnlControlBar_MouseEnter">
+
+                    <Button x:Name="btnClose"
+                            Style="{StaticResource closebtn}"
+                            Click="btnClose_Click">
+                        <icon:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"
+                       Foreground="{StaticResource ButtonTextColor}"/>
+                    </Button>
+
+                    <Button x:Name="btnMaximize"
+                            Style="{StaticResource minimizebtn}"
+                            Click="maxBtn_Click">
+                        <icon:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"
+                       Foreground="{StaticResource ButtonTextColor}"/>
+                    </Button>
+
+                    <Button x:Name="btnMinimize"
+                            Style="{StaticResource minimizebtn}"
+                            Click="minBtn_Click">
+                        <icon:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"
+                       Foreground="{StaticResource ButtonTextColor}"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+        </Border>
 </Window>
