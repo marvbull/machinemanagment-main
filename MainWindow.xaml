@@ -29,7 +29,9 @@
 			<Button Content="Machine Activity" Style="{StaticResource SidebarButton}" />
 			<Button Content="Stats" Style="{StaticResource SidebarButton}" />
 			<Button Content="Settings" Style="{StaticResource SidebarButton}" />
-		</StackPanel>
+            <Button Content="Auftrag einpflegen" Click="AuftragEinpflegenButton_Click" Style="{StaticResource SidebarButton}" />
+
+        </StackPanel>
 
 		<!-- Main Content -->
 		<Grid Grid.Column="1" Margin="10">

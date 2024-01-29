@@ -1,4 +1,5 @@
 ﻿using MMS.db_models;
+using MMS.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,11 @@ namespace MMS
                     MessageBox.Show($"Fehler bei der Datenbankverbindung:\n{ex.Message}");
                 }
             }
+        }
+        private void AuftragEinpflegenButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuftragErstellenView auftragErstellenView = new AuftragErstellenView();
+            auftragErstellenView.ShowDialog();
         }
     }
 }
