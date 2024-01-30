@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMS.Model
+namespace MMS.ViewModel
 {
-    internal class Vorgesetzer
+   public  class CheckViewModel: ViewModelBase
     {
     }
 }

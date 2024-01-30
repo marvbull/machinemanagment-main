@@ -60,9 +60,75 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
+    <!--Icon For all ControlButtons-->
+    <Style x:Key="controlButtonIcon" TargetType="icon:IconImage">
+        <Setter Property="Foreground" Value="{Binding Path=Froeground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        <Setter Property="Width" Value="9"/>
+        <Setter Property="Height" Value="9"/>
+    </Style>
 
+    <!--Style Close Button-->
+    <Style x:Key="closebtn" TargetType="Button">
 
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="Width" Value="18"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundVibrantPink}"/>
+        <Setter Property="Foreground" Value="{StaticResource BackgroundVibrantPink}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="WMF Rotis Regular"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        CornerRadius="9"
+                        BorderThickness="0"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
+        <!--Style Close Button mouse hover over -->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BackgroundVibrantPink}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Style Minimize/maximized Button-->
+    <Style x:Key="minimizebtn" TargetType="Button">
+
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="Width" Value="18"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundFreshGreen}"/>
+        <Setter Property="Foreground" Value="{StaticResource BackgroundFreshGreen}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="WMF Rotis Regular"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        CornerRadius="9"
+                        BorderThickness="0"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+
+        </Setter>
+
+        <!--Style min/max Button mouse hover over -->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BackgroundFreshGreen}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 
 

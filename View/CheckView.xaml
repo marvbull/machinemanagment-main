@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="MMS.View.CheckView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMS.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <!-- Abstand oben -->
+            <RowDefinition Height="Auto"/>
+            <!-- Titelzeile -->
+            <RowDefinition Height="20"/>
+            <!-- Abstand zwischen Titel und Eingabefeld -->
+            <RowDefinition Height="Auto"/>
+            <!-- Eingabefeld -->
+            <RowDefinition Height="30"/>
+            <!-- Abstand zwischen Eingabefeld und Button -->
+            <RowDefinition Height="Auto"/>
+            <!-- Button -->
+            <RowDefinition Height="40"/>
+            <!-- Abstand zwischen Button und Informationstext -->
+            <RowDefinition Height="Auto"/>
+            <!-- Informationstext -->
+            <RowDefinition Height="1*"/>
+            <!-- Abstand unten -->
+        </Grid.RowDefinitions>
+
+        <!-- Anweisungstext -->
+        <TextBlock Grid.Row="1" Text="Geben Sie Ihre ID ein:" Foreground="{StaticResource BackgroundLightGrayish}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <!-- Eingabefeld -->
+        <TextBox Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                 MaxLength="6" Width="250" Height="35" FontSize="20" 
+                 TextAlignment="Center" 
+                 BorderThickness="1" BorderBrush="#FFCCCCCC"
+                 Margin="0,0,0,10"/>
+
+        <!-- Bestätigungsbutton -->
+        <Button Grid.Row="5" Content="Bestätigen" Width="150" Height="40" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Command="{Binding ConfirmCommand}" 
+                Background="#FF4CAF50" Foreground="White"
+                BorderBrush="{x:Null}" FontSize="16"
+                FontWeight="Bold" Cursor="Hand" Margin="0,0,0,10"/>
+
+        <!-- Informationstext -->
+        <TextBlock Grid.Row="7" Text="Bitte geben Sie Ihre Personalnummer ein, um die zugeordneten Aufträge einzusehen." 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Opacity="0.6"
+                   Margin="20" Foreground="{StaticResource BackgroundLightGrayish}" />
+    </Grid>
+</UserControl>

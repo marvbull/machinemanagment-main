@@ -5,16 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:icon="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:MMS.View"
+        xmlns:vm="clr-namespace:MMS.ViewModel"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
         Title="MainWindowMMS" Height="700" Width="1300">
+    
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:CheckViewModel}">
+            <local:CheckView/>
+        </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vm:AuftragAnlegenViewModel}">
+            <local:AuftragAnlegenView/>
+        </DataTemplate>
+    </Window.Resources>
 
-    < CornerRadius="10" BorderThickness="1">
-
+    <Border CornerRadius="10" BorderThickness="1">
         <!--Border-->
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -44,8 +54,7 @@
                                 Height="35"
                                 Margin="25,25,0,40">
                         <!--<Image Source="/Images/WMF100_neg.png" Height="30" />-->
-                        <icon:IconImage Icon="Computer"/>
-                        <TextBlock Text="EASY UPLOAD"
+                        <TextBlock Text="MMS"
                                    Foreground="{StaticResource TextLightGrayish}"
                                    FontFamily="WMF Rotis Regular"
                                    FontSize="20"
@@ -56,11 +65,12 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource BackgroundFreshGreen}"
-                                 IsChecked="true" >
-                        <!-- Command="{Binding ShowIPConnectionViewCommand}"-->
+                                 IsChecked="true" 
+                                 Command="{Binding ShowCheckViewCommand}">
+                         
 
                         <StackPanel Orientation="Horizontal">
-                            <icon:IconImage Icon="Search" Style="{StaticResource menuButtonIcon}"/>
+                            <icon:IconImage Icon="Computer" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Check" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
@@ -70,18 +80,19 @@
                         <!-- Command="{Binding ShowMachineListViewCommand}"-->
 
                         <StackPanel Orientation="Horizontal">
-                            <icon:IconImage Icon="StackExchange" Style="{StaticResource menuButtonIcon}"/>
+                            <icon:IconImage Icon="Coffee" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Maschinen Aktivitäten" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource BackgroundVibrantPink}">
-                        <!-- Command="{Binding ShowMachineListViewCommand}"-->
+                                 Tag="{StaticResource BackgroundVibrantPink}" 
+                                 Command="{Binding ShowAuftragAnlegenViewCommand}">
+            
 
                         <StackPanel Orientation="Horizontal">
-                            <icon:IconImage Icon="ScaleBalanced" Style="{StaticResource menuButtonIcon}"/>
+                            <icon:IconImage Icon="Coffee" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Vorgang anlegen" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
@@ -106,39 +117,79 @@
                         <!--Content section /Child views-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
+                    <!--Control bar-->
+                    <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
+
+                        <Button x:Name="btnClose"
+                                Style="{StaticResource closebtn}"
+                                Click="btnClose_Click">
+                            <icon:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"
+                                               Foreground="{StaticResource BackgroundFreshGreen}"/>
+                        </Button>
+
+                        <Button x:Name="btnMaximize"
+                                Style="{StaticResource minimizebtn}"
+                                Click="maxBtn_Click">
+                            <icon:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"
+                                                                  Foreground="{StaticResource BackgroundFreshGreen}"/>
+                        </Button>
+
+                        <Button x:Name="btnMinimize"
+                                Style="{StaticResource minimizebtn}"
+                                Click="minBtn_Click">
+                            <icon:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"
+                                               Foreground="{StaticResource BackgroundVibrantPink}"/>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Header/Caption (Title and user options) -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+
+                            <icon:IconImage Icon="{Binding Icon}"
+                                                   Height="20"
+                                                   Width="20"
+                                                   Margin="35,0,10,0"
+                                                   Foreground="{StaticResource BackgroundFreshGreen}"/>
+
+                            <TextBlock Text="{Binding Caption}"
+                                           Foreground="{StaticResource BackgroundFreshGreen}"
+                                           FontSize="16"
+                                           FontFamily="WMF Rotis Regular"
+                                           FontWeight="Medium"
+                                           VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!--User Options-->
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    FlowDirection="RightToLeft"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,10,0">
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Content section (ContentControl for child views) -->
+                    <ContentControl Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="25"/>
                 </Grid>
-
-                <StackPanel x:Name="pnlControlBar"
-                            Grid.Row="0"
-                            Orientation="Horizontal"
-                            FlowDirection="RightToLeft"
-                            Background="Transparent"
-                            Margin="0,0,5,0"
-                            MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
-                            MouseEnter="pnlControlBar_MouseEnter">
-
-                    <Button x:Name="btnClose"
-                            Style="{StaticResource closebtn}"
-                            Click="btnClose_Click">
-                        <icon:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"
-                       Foreground="{StaticResource ButtonTextColor}"/>
-                    </Button>
-
-                    <Button x:Name="btnMaximize"
-                            Style="{StaticResource minimizebtn}"
-                            Click="maxBtn_Click">
-                        <icon:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"
-                       Foreground="{StaticResource ButtonTextColor}"/>
-                    </Button>
-
-                    <Button x:Name="btnMinimize"
-                            Style="{StaticResource minimizebtn}"
-                            Click="minBtn_Click">
-                        <icon:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"
-                       Foreground="{StaticResource ButtonTextColor}"/>
-                    </Button>
-                </StackPanel>
             </Border>
         </Grid>
-        </Border>
+    </Border>
 </Window>
