@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMS.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -24,6 +25,7 @@ namespace MMS.View
         public MainWindowMMS()
         {
             InitializeComponent();
+            DataContext = new MainMMSViewModel();
         }
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);

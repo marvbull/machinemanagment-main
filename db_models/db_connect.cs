@@ -11,10 +11,10 @@ namespace MMS.db_models
     {
         public DbSet<Facharbeiter> Facharbeiter { get; set; }
         public DbSet<Vorgesetzter> Vorgesetzter { get; set; }
-        public DbSet<Lehrgang_Zuweisung> LehrgangZuweisungen { get; set; }
+        public DbSet<Lehrgang_Zuweisung> Lehrgang_Zuweisung { get; set; }
         public DbSet<Lehrgang> Lehrgang { get; set; }
         public DbSet<Auftraege> Auftraege { get; set; }
-        public DbSet<Aufgabe_Zuweisung> AufgabeZuweisungen { get; set; }
+        public DbSet<Aufgabe_Zuweisung> Aufgabe_Zuweisung { get; set; }
         public DbSet<Maschinen> Maschinen { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

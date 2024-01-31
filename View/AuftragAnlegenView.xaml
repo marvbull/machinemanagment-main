@@ -22,24 +22,27 @@
             </Grid.ColumnDefinitions>
 
             <!-- Personen -->
-            <Label Grid.Row="0" Grid.Column="0" Content="Personen:" Margin="5"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" Name="PersonenComboBox" Margin="5"/>
+            <Label Grid.Row="0" Grid.Column="0" Content="Personen:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" Name="PersonenComboBox" Margin="5"
+            ItemsSource="{Binding FacharbeiterList}"
+             DisplayMemberPath="Facharbeiter_Name"/>
+
 
             <!-- Maschinen -->
-            <Label Grid.Row="1" Grid.Column="0" Content="Maschinen:" Margin="5"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Maschinen:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
             <ComboBox Grid.Row="1" Grid.Column="1" Name="MaschinenComboBox" Margin="5"/>
 
             <!-- Fertigstellung -->
-            <Label Grid.Row="2" Grid.Column="0" Content="Fertigstellung:" Margin="5"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Fertigstellung:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
             <DatePicker Grid.Row="2" Grid.Column="1" Name="FertigstellungDatePicker" Margin="5"/>
 
             <!-- Zeit -->
-            <Label Grid.Row="3" Grid.Column="0" Content="Zeit:" Margin="5"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Zeit:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
             <TextBox Grid.Row="3" Grid.Column="1" Name="ZeitTextBox" Margin="5"/>
 
             <!-- Beschreibung -->
-            <Label Grid.Row="4" Grid.Column="0" Content="Beschreibung:" Margin="5"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="BeschreibungTextBox" Margin="5" Height="100" TextWrapping="Wrap"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Beschreibung:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="BeschreibungTextBox" Margin="5" Height="100" TextWrapping="Wrap" />
 
         </Grid>
     </Grid>

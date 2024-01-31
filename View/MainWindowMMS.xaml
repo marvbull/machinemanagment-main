@@ -11,7 +11,7 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        Title="MainWindowMMS" Height="700" Width="1300">
+        Title="MainWindowMMS" Height="600" Width="1200">
     
     
     <Window.Resources>
