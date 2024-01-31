@@ -15,7 +15,7 @@ namespace MMS.db_models
         public DbSet<Lehrgang> Lehrgang { get; set; }
         public DbSet<Auftraege> Auftraege { get; set; }
         public DbSet<Aufgabe_Zuweisung> Aufgabe_Zuweisung { get; set; }
-        public DbSet<Maschinen> Maschinen { get; set; }
+        public DbSet<Maschine> Maschine { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,7 +49,7 @@ namespace MMS.db_models
             modelBuilder.Entity<Lehrgang_Zuweisung>()
             .HasKey(a => a.Eintrag); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
 
-            modelBuilder.Entity<Maschinen>()
+            modelBuilder.Entity<Maschine>()
             .HasKey(a => a.Maschinen_ID); // Ersetzen Sie SomeUniqueColumn durch eine geeignete eindeutige Spalte
 
             modelBuilder.Entity<Vorgesetzter>()

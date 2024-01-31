@@ -5,45 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMS.View"
              mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:MMS.ViewModel"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
 
-            <!-- Personen -->
-            <Label Grid.Row="0" Grid.Column="0" Content="Personen:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" Name="PersonenComboBox" Margin="5"
-            ItemsSource="{Binding FacharbeiterList}"
-             DisplayMemberPath="Facharbeiter_Name"/>
+    <UserControl.DataContext>
+        <vm:AuftragAnlegenViewModel/>
+    </UserControl.DataContext>
 
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <!-- Weitere Zeilen können nach Bedarf hinzugefügt werden -->
+        </Grid.RowDefinitions>
 
-            <!-- Maschinen -->
-            <Label Grid.Row="1" Grid.Column="0" Content="Maschinen:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" Name="MaschinenComboBox" Margin="5"/>
+        <!-- Facharbeiter Auswahl (ComboBox) -->
+        <Label Content="Facharbeiter Nachname:" Margin="5"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="5"
+                  ItemsSource="{Binding FacharbeiterList}"
+                  DisplayMemberPath="Facharbeiter_Name"
+                  SelectedItem="{Binding SelectedFacharbeiter, Mode=TwoWay}"/>
 
-            <!-- Fertigstellung -->
-            <Label Grid.Row="2" Grid.Column="0" Content="Fertigstellung:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
-            <DatePicker Grid.Row="2" Grid.Column="1" Name="FertigstellungDatePicker" Margin="5"/>
+        <!-- Facharbeiter Vorname (TextBox) -->
+        <Label Content="Facharbeiter Vorname:" Grid.Row="1" Margin="5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5"
+                 Text="{Binding FacharbeiterVorname}" IsEnabled="False"/>
 
-            <!-- Zeit -->
-            <Label Grid.Row="3" Grid.Column="0" Content="Zeit:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Name="ZeitTextBox" Margin="5"/>
+        <!-- Facharbeiter ID (TextBox) -->
+        <Label Content="Facharbeiter ID:" Grid.Row="2" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"
+                 Text="{Binding SelectedFacharbeiterId}" IsEnabled="False"/>
 
-            <!-- Beschreibung -->
-            <Label Grid.Row="4" Grid.Column="0" Content="Beschreibung:" Margin="5" Foreground="{StaticResource TextLightGrayish}"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="BeschreibungTextBox" Margin="5" Height="100" TextWrapping="Wrap" />
+        <!-- Maschinen Auswahl (ComboBox) -->
+        <Label Content="Maschinen Name:" Grid.Row="3" Margin="5"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="5"
+                  ItemsSource="{Binding MaschinenList}"
+                  DisplayMemberPath="Maschinen_Name"
+                  SelectedItem="{Binding SelectedMaschine, Mode=TwoWay}"/>
 
-        </Grid>
+        <!-- Maschinen ID (TextBox) -->
+        <Label Content="Maschinen ID:" Grid.Row="4" Margin="5"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="5"
+                 Text="{Binding SelectedMaschinenId}" IsEnabled="False"/>
     </Grid>
 </UserControl>
