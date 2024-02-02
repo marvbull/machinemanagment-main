@@ -48,18 +48,18 @@
 
         <!-- Maschinen ID (TextBox) -->
         <Label Content="Maschinen ID:" Grid.Row="4" Margin="5"/>
-        <TextBox Grid.Row="4" Margin="140,5,5,5"
+        <TextBox Grid.Row="4" Margin="140,5,0,5"
                  Text="{Binding SelectedMaschinenId}" IsEnabled="False"/>
 
         <!-- Startdatum Auswahl (DatePicker) -->
         <Label Content="Startdatum:" Grid.Row="4" Margin="5,36,5,-26"/>
-        <DatePicker Grid.Row="4" Margin="140,36,5,-26"
+        <DatePicker Grid.Row="4" Margin="140,36,0,-26"
             SelectedDate="01.01.2024"
          />
 
         <Label Content="Dauer (Minuten):" Grid.Row="4" Margin="0,67,10,-57"/>
         <!-- Dauer Auswahl (TextBox) -->
-        <TextBox Grid.Row="4" Margin="140,67,5,-57"
+        <TextBox Grid.Row="4" Margin="140,67,0,-57"
          Text="{Binding DauerInMinuten, Mode=TwoWay}" />
 
 
