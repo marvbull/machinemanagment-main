@@ -14,7 +14,6 @@ namespace MMS.db_models
         public string? Material { get; set; }
         public DateTime Abgabe { get; set; }
         public int Dauer { get; set; }
-        public int Facharbeiter_ID { get; set; } // Fremdschlüssel für den zugeordneten Facharbeiter
     }
 
 }

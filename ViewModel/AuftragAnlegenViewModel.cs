@@ -226,5 +226,67 @@ namespace MMS.ViewModel
                 }
             }
         }
+
+
+
+
+        private ViewModelCommand _auftragAnlegenCommand;
+
+        public ICommand AuftragAnlegenCommand
+        {
+            get
+            {
+                if (_auftragAnlegenCommand == null)
+                {
+                    _auftragAnlegenCommand = new ViewModelCommand(
+                        async param => await AuftragAnlegenAsync(),
+                        param => CanAuftragAnlegen()
+                    );
+                }
+                return _auftragAnlegenCommand;
+            }
+        }
+    
+
+        private bool CanAuftragAnlegen()
+        {
+            // Hier kannst du überprüfen, ob alle notwendigen Daten vorhanden sind, um einen Auftrag anzulegen
+            return SelectedFacharbeiter != null && SelectedMaschine != null;
+        }
+
+        private async Task AuftragAnlegenAsync()
+        {
+            using (var context = new db_connect())
+            {
+                // Erstelle eine neue Instanz von Auftraege und setze die Eigenschaften
+                var auftrag = new Auftraege
+                {
+                    Beschreibung = Beschreibung,
+                    Material = Material,
+                    Abgabe = DateTime.Now, // Hier musst du das tatsächliche Abgabedatum setzen
+                    Dauer = DauerInMinuten,
+                    Maschinen_ID = SelectedMaschine.Maschinen_ID
+                    // Andere Eigenschaften, die du setzen möchtest
+                };
+
+                // Füge den Auftrag zur Tabelle Auftraege hinzu
+                context.Auftraege.Add(auftrag);
+                await context.SaveChangesAsync();
+
+                // Erstelle eine neue Instanz von Aufgabe_Zuweisung und setze die Eigenschaften
+                var aufgabeZuweisung = new Aufgabe_Zuweisung
+                {
+                    Auftrags_ID = auftrag.Auftrags_ID,
+                    Facharbeiter_ID = SelectedFacharbeiter.Facharbeiter_ID,
+                    // Andere Eigenschaften, die du setzen möchtest
+                };
+
+                // Füge die Zuweisung zur Tabelle Aufgabe_Zuweisung hinzu
+                context.Aufgabe_Zuweisung.Add(aufgabeZuweisung);
+                await context.SaveChangesAsync();
+            }
+        }
     }
+
 }
+
