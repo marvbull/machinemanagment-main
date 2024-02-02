@@ -230,6 +230,7 @@ namespace MMS.ViewModel
 
 
 
+
         private ViewModelCommand _auftragAnlegenCommand;
 
         public ICommand AuftragAnlegenCommand
@@ -246,7 +247,6 @@ namespace MMS.ViewModel
                 return _auftragAnlegenCommand;
             }
         }
-    
 
         private bool CanAuftragAnlegen()
         {
@@ -256,37 +256,44 @@ namespace MMS.ViewModel
 
         private async Task AuftragAnlegenAsync()
         {
-            using (var context = new db_connect())
+            try
             {
-                // Erstelle eine neue Instanz von Auftraege und setze die Eigenschaften
-                var auftrag = new Auftraege
+                using (var context = new db_connect())
                 {
-                    Beschreibung = Beschreibung,
-                    Material = Material,
-                    Abgabe = DateTime.Now, // Hier musst du das tatsächliche Abgabedatum setzen
-                    Dauer = DauerInMinuten,
-                    Maschinen_ID = SelectedMaschine.Maschinen_ID
-                    // Andere Eigenschaften, die du setzen möchtest
-                };
+                    // Erstelle eine neue Instanz von Auftraege und setze die Eigenschaften
+                    var auftrag = new Auftraege
+                    {
+                        Beschreibung = Beschreibung,
+                        Material = Material,
+                        Abgabe = DateTime.Now, // Hier musst du das tatsächliche Abgabedatum setzen
+                        Dauer = DauerInMinuten,
+                        Maschinen_ID = SelectedMaschine.Maschinen_ID
+                        // Andere Eigenschaften, die du setzen möchtest
+                    };
 
-                // Füge den Auftrag zur Tabelle Auftraege hinzu
-                context.Auftraege.Add(auftrag);
-                await context.SaveChangesAsync();
+                    // Füge den Auftrag zur Tabelle Auftraege hinzu
+                    context.Auftraege.Add(auftrag);
+                    await context.SaveChangesAsync();
 
-                // Erstelle eine neue Instanz von Aufgabe_Zuweisung und setze die Eigenschaften
-                var aufgabeZuweisung = new Aufgabe_Zuweisung
-                {
-                    Auftrags_ID = auftrag.Auftrags_ID,
-                    Facharbeiter_ID = SelectedFacharbeiter.Facharbeiter_ID,
-                    // Andere Eigenschaften, die du setzen möchtest
-                };
+                    // Erstelle eine neue Instanz von Aufgabe_Zuweisung und setze die Eigenschaften
+                    var aufgabeZuweisung = new Aufgabe_Zuweisung
+                    {
+                        Auftrags_ID = auftrag.Auftrags_ID,
+                        Facharbeiter_ID = SelectedFacharbeiter.Facharbeiter_ID,
+                        // Andere Eigenschaften, die du setzen möchtest
+                    };
 
-                // Füge die Zuweisung zur Tabelle Aufgabe_Zuweisung hinzu
-                context.Aufgabe_Zuweisung.Add(aufgabeZuweisung);
-                await context.SaveChangesAsync();
+                    // Füge die Zuweisung zur Tabelle Aufgabe_Zuweisung hinzu
+                    context.Aufgabe_Zuweisung.Add(aufgabeZuweisung);
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hier kannst du die Ausnahme behandeln oder Debug-Informationen ausgeben
+                Console.WriteLine($"Fehler beim Anlegen des Auftrags: {ex.Message}");
             }
         }
     }
-
 }
 
