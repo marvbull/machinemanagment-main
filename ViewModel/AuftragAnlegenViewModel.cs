@@ -27,7 +27,7 @@ namespace MMS.ViewModel
                 LoadFacharbeiterDetails();
             }
         }
-
+        
         private int _dauerInMinuten;
 
         // Abschnitt: Dauer des Auftrags
