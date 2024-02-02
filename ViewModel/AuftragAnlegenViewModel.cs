@@ -3,6 +3,7 @@ using MMS.db_models;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace MMS.ViewModel
 {
@@ -24,6 +25,47 @@ namespace MMS.ViewModel
                 LoadFacharbeiterDetails();
             }
         }
+
+        private int _dauerInMinuten;
+        public int DauerInMinuten
+        {
+            get { return _dauerInMinuten; }
+            set
+            {
+                _dauerInMinuten = value;
+                OnPropertyChanged(nameof(DauerInMinuten));
+            }
+        }
+
+
+        private string _beschreibung;
+        public string Beschreibung
+        {
+            get { return _beschreibung; }
+            set
+            {
+                _beschreibung = value;
+                OnPropertyChanged(nameof(Beschreibung));
+            }
+        }
+
+
+
+
+        private string _material;
+        public string Material
+        {
+            get { return _material; }
+            set
+            {
+                _material = value;
+                OnPropertyChanged(nameof(Material));
+            }
+        }
+
+
+
+
 
         private string _facharbeiterNachname;
 
