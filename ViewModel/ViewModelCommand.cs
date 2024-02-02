@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MMSLib.db_models;
 
 namespace MMS.ViewModel
 {

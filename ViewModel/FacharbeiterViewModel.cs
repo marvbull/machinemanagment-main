@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using MMS.db_models;
+using MMSLib.db_models;
+
 
 namespace MMS.ViewModel
 {

@@ -83,5 +83,10 @@
 
         <!-- Button für Auftrag anlegen -->
         <Button Content="Auftrag anlegen" Grid.Row="8" Margin="135,79,10,-69" Command="{Binding AuftragAnlegenCommand}" />
+
+        <!-- Statusmeldung (TextBlock) -->
+        <TextBlock Grid.Row="8" Margin="0,48,10,-38"
+           Text="{Binding StatusMessage, UpdateSourceTrigger=PropertyChanged}"
+           Foreground="Green"/>
     </Grid>
 </UserControl>

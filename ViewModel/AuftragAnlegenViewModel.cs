@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using MMS.db_models;
+using MMSLib.db_models;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -7,8 +7,10 @@ using System;
 
 namespace MMS.ViewModel
 {
+    // Abschnitt: Properties für die Benutzeroberfläche
     public class AuftragAnlegenViewModel : ViewModelBase
     {
+        // Abschnitt: Auswahl von Facharbeitern
         private Facharbeiter _selectedFacharbeiter;
 
         public Facharbeiter SelectedFacharbeiter
@@ -27,6 +29,8 @@ namespace MMS.ViewModel
         }
 
         private int _dauerInMinuten;
+
+        // Abschnitt: Dauer des Auftrags
         public int DauerInMinuten
         {
             get { return _dauerInMinuten; }
@@ -37,8 +41,9 @@ namespace MMS.ViewModel
             }
         }
 
-
         private string _beschreibung;
+
+        // Abschnitt: Beschreibung des Auftrags
         public string Beschreibung
         {
             get { return _beschreibung; }
@@ -49,10 +54,9 @@ namespace MMS.ViewModel
             }
         }
 
-
-
-
         private string _material;
+
+        // Abschnitt: Material für den Auftrag
         public string Material
         {
             get { return _material; }
@@ -63,12 +67,9 @@ namespace MMS.ViewModel
             }
         }
 
-
-
-
-
         private string _facharbeiterNachname;
 
+        // Abschnitt: Nachname des ausgewählten Facharbeiters
         public string FacharbeiterNachname
         {
             get { return _facharbeiterNachname; }
@@ -81,6 +82,7 @@ namespace MMS.ViewModel
 
         private string _facharbeiterVorname;
 
+        // Abschnitt: Vorname des ausgewählten Facharbeiters
         public string FacharbeiterVorname
         {
             get { return _facharbeiterVorname; }
@@ -93,6 +95,7 @@ namespace MMS.ViewModel
 
         private int _selectedFacharbeiterId;
 
+        // Abschnitt: ID des ausgewählten Facharbeiters
         public int SelectedFacharbeiterId
         {
             get { return _selectedFacharbeiterId; }
@@ -113,6 +116,7 @@ namespace MMS.ViewModel
 
         private Maschine _selectedMaschine;
 
+        // Abschnitt: Auswahl von Maschinen
         public Maschine SelectedMaschine
         {
             get { return _selectedMaschine; }
@@ -130,6 +134,7 @@ namespace MMS.ViewModel
 
         private string _maschinenName;
 
+        // Abschnitt: Name der ausgewählten Maschine
         public string MaschinenName
         {
             get { return _maschinenName; }
@@ -142,6 +147,7 @@ namespace MMS.ViewModel
 
         private int _selectedMaschinenId;
 
+        // Abschnitt: ID der ausgewählten Maschine
         public int SelectedMaschinenId
         {
             get { return _selectedMaschinenId; }
@@ -161,8 +167,11 @@ namespace MMS.ViewModel
         }
 
         public ObservableCollection<Facharbeiter> FacharbeiterList { get; private set; }
+
+        // Abschnitt: Liste von Facharbeitern
         public ObservableCollection<Maschine> MaschinenList { get; private set; }
 
+        // Abschnitt: Konstruktor und Initialisierungsmethoden
         public AuftragAnlegenViewModel()
         {
             FacharbeiterList = new ObservableCollection<Facharbeiter>();
@@ -172,6 +181,7 @@ namespace MMS.ViewModel
             LoadMaschinen();
         }
 
+        // Abschnitt: Methoden zum Laden von Facharbeitern und Maschinen
         private async void LoadFacharbeiter()
         {
             using (var context = new db_connect())
@@ -196,6 +206,7 @@ namespace MMS.ViewModel
             }
         }
 
+        // Abschnitt: Methoden zum Laden von Details zu Facharbeitern und Maschinen
         private async void LoadFacharbeiterDetails()
         {
             using (var context = new db_connect())
@@ -227,10 +238,20 @@ namespace MMS.ViewModel
             }
         }
 
+        private string _statusMessage;
 
+        // Abschnitt: Statusmeldung
+        public string StatusMessage
+        {
+            get { return _statusMessage; }
+            set
+            {
+                _statusMessage = value;
+                OnPropertyChanged(nameof(StatusMessage));
+            }
+        }
 
-
-
+        // Abschnitt: Command für den Auftrag anlegen
         private ViewModelCommand _auftragAnlegenCommand;
 
         public ICommand AuftragAnlegenCommand
@@ -248,12 +269,14 @@ namespace MMS.ViewModel
             }
         }
 
+        // Abschnitt: Überprüfung, ob ein Auftrag angelegt werden kann
         private bool CanAuftragAnlegen()
         {
             // Hier kannst du überprüfen, ob alle notwendigen Daten vorhanden sind, um einen Auftrag anzulegen
             return SelectedFacharbeiter != null && SelectedMaschine != null;
         }
 
+        // Abschnitt: Asynchrone Methode zum Anlegen eines Auftrags
         private async Task AuftragAnlegenAsync()
         {
             try
@@ -286,14 +309,19 @@ namespace MMS.ViewModel
                     // Füge die Zuweisung zur Tabelle Aufgabe_Zuweisung hinzu
                     context.Aufgabe_Zuweisung.Add(aufgabeZuweisung);
                     await context.SaveChangesAsync();
+
+                    // Setze die Statusmeldung für die Bestätigung
+                    StatusMessage = "Auftrag erfolgreich angelegt!";
                 }
             }
             catch (Exception ex)
             {
                 // Hier kannst du die Ausnahme behandeln oder Debug-Informationen ausgeben
                 Console.WriteLine($"Fehler beim Anlegen des Auftrags: {ex.Message}");
+
+                // Setze die Statusmeldung für Fehler
+                StatusMessage = "Fehler beim Anlegen des Auftrags!";
             }
         }
     }
 }
-

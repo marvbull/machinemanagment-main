@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
-using MMS.db_models;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using MMSLib.db_models;
+using MMSLib.Klassen;
+
 
 namespace MMS.ViewModel
 {
@@ -27,24 +29,27 @@ namespace MMS.ViewModel
 
         public async Task LoadAufträgeForFacharbeiter(int facharbeiterId)
         {
-            using (var context = new db_connect())
-            {
-                var zugeordneteAufträge = await context.Aufgabe_Zuweisung
-                    .Where(zuweisung => zuweisung.Facharbeiter_ID == facharbeiterId)
-                    .Join(context.Auftraege,
-                          zuweisung => zuweisung.Auftrags_ID,
-                          auftrag => auftrag.Auftrags_ID,
-                          (zuweisung, auftrag) => auftrag)
-                    .ToListAsync();
+            //using (var context = new db_connect())
+            //{
+            //    var zugeordneteAufträge = await context.Aufgabe_Zuweisung
+            //        .Where(zuweisung => zuweisung.Facharbeiter_ID == facharbeiterId)
+            //        .Join(context.Auftraege,
+            //              zuweisung => zuweisung.Auftrags_ID,
+            //              auftrag => auftrag.Auftrags_ID,
+            //              (zuweisung, auftrag) => auftrag)
+            //        .ToListAsync();
 
-                Aufträge.Clear();
-                foreach (var auftrag in zugeordneteAufträge)
-                {
-                    Aufträge.Add(auftrag);
-                }
+            Aufträge.Clear();
+
+
+            foreach (var auftrag in new AuftragAnzeigen().LoadAufträgeForFacharbeiter(facharbeiterId))
+            {
+                Aufträge.Add(auftrag);
             }
+
         }
 
     }
-
 }
+
+
