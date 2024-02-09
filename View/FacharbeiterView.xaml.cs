@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMS.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MMS.View
 {
     /// <summary>
-    /// Interaktionslogik für CheckView.xaml
+    /// Interaktionslogik für FacharbeiterView.xaml
     /// </summary>
-    public partial class CheckView : UserControl
+    public partial class FacharbeiterView : Window
     {
-        public CheckView()
+        public FacharbeiterView()
         {
             InitializeComponent();
+            DataContext = new FacharbeiterViewModel();
         }
     }
 }

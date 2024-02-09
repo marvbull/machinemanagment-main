@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MMS.View
 {
     /// <summary>
-    /// Interaktionslogik für CheckView.xaml
+    /// Interaktionslogik für AuftragsÜbersichtPopupView.xaml
     /// </summary>
-    public partial class CheckView : UserControl
+    public partial class AuftragsÜbersichtPopupView : Window
     {
-        public CheckView()
+        public AuftragsÜbersichtPopupView()
         {
             InitializeComponent();
         }
