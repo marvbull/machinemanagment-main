@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MMS.View
 {
     /// <summary>
-    /// Interaktionslogik für CheckView.xaml
+    /// Interaktionslogik für AuftragAnlegenView.xaml
     /// </summary>
-    public partial class CheckView : UserControl
+    public partial class AuftragAnlegenView : UserControl
     {
-        public CheckView()
+        public AuftragAnlegenView()
         {
             InitializeComponent();
         }

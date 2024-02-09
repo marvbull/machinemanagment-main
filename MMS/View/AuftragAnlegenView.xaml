@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="MMS.View.AuftragAnlegenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMS.View"
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:MMS.ViewModel"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <vm:AuftragAnlegenViewModel/>
+    </UserControl.DataContext>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Facharbeiter Auswahl (ComboBox) -->
+        <Label Content="Facharbeiter Nachname:" Margin="5"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="140,5,5,5"
+                  ItemsSource="{Binding FacharbeiterList}"
+                  DisplayMemberPath="Facharbeiter_Name"
+                  SelectedItem="{Binding SelectedFacharbeiter, Mode=TwoWay}"/>
+
+        <!-- Facharbeiter Vorname (TextBox) -->
+        <Label Content="Facharbeiter Vorname:" Grid.Row="1" Margin="5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="140,5,5,5"
+                 Text="{Binding FacharbeiterVorname}" IsEnabled="False"/>
+
+        <!-- Facharbeiter ID (TextBox) -->
+        <Label Content="Facharbeiter ID:" Grid.Row="2" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="140,5,5,5"
+                 Text="{Binding SelectedFacharbeiterId}" IsEnabled="False"/>
+
+        <!-- Maschinen Auswahl (ComboBox) -->
+        <Label Content="Maschinen Name:" Grid.Row="3" Margin="5"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="140,5,5,5"
+                  ItemsSource="{Binding MaschinenList}"
+                  DisplayMemberPath="Maschinen_Name"
+                  SelectedItem="{Binding SelectedMaschine, Mode=TwoWay}"/>
+
+        <!-- Maschinen ID (TextBox) -->
+        <Label Content="Maschinen ID:" Grid.Row="4" Margin="5"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="140,5,5,5"
+                 Text="{Binding SelectedMaschinenId}" IsEnabled="False"/>
+
+        <!-- Startdatum Auswahl (DatePicker) -->
+        <Label Content="Startdatum:" Grid.Row="5" Margin="5"/>
+        <DatePicker Grid.Row="5" Grid.Column="1" Margin="140,5,5,5"
+                    SelectedDate="01.01.2024"/>
+
+        <!-- Dauer (Label) -->
+        <Label Content="Dauer (Minuten):" Grid.Row="6" Margin="5"/>
+        <!-- Dauer Auswahl (TextBox) -->
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="140,5,5,5"
+                 Text="{Binding DauerInMinuten, Mode=TwoWay}" />
+
+        <!-- Material (Label) -->
+        <Label Content="Material:" Grid.Row="7" Margin="5"/>
+        <!-- Material Auswahl (TextBox) -->
+        <TextBox Grid.Row="7" Grid.Column="1" Margin="140,5,5,5"
+                 Text="{Binding Material, Mode=TwoWay}" />
+
+        <!-- Beschreibung (Label) -->
+        <Label Content="Beschreibung:" Grid.Row="8" Margin="5"/>
+        <!-- Beschreibung (TextBox) mit vertikaler Scrollleiste -->
+        <TextBox Grid.Row="8" Grid.Column="1" Margin="140,5,5,5"
+                 VerticalScrollBarVisibility="Auto" 
+                 TextWrapping="Wrap"
+                 MaxHeight="100" 
+                 AcceptsReturn="True"
+                 Text="{Binding Beschreibung, Mode=TwoWay}" />
+
+        <!-- Button für Auftrag anlegen -->
+        <Button Content="Auftrag anlegen" Grid.Row="8" Margin="135,79,10,-69" Command="{Binding AuftragAnlegenCommand}" />
+
+        <!-- Statusmeldung (TextBlock) -->
+        <TextBlock Grid.Row="8" Margin="0,48,10,-38"
+           Text="{Binding StatusMessage, UpdateSourceTrigger=PropertyChanged}"
+           Foreground="Green"/>
+    </Grid>
+</UserControl>
