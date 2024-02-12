@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MMSLib.db_models;
+using MMSLib.Model;
 
 
 namespace MMSLib.Klassen
@@ -14,13 +14,13 @@ namespace MMSLib.Klassen
         public  List<Auftraege> LoadAufträgeForFacharbeiter(int facharbeiterId)
         {
             var aufträge = new List<Auftraege>();
-            using (var context = new db_connect())
+            using (var context = new DBConnect())
             {
-                var zugeordneteAufträge = context.Aufgabe_Zuweisung
-                    .Where(zuweisung => zuweisung.Facharbeiter_ID == facharbeiterId)
+                var zugeordneteAufträge = context.AufgabenZuweisen
+                    .Where(zuweisung => zuweisung.FacharbeiterID == facharbeiterId)
                     .Join(context.Auftraege,
-                          zuweisung => zuweisung.Auftrags_ID,
-                          auftrag => auftrag.Auftrags_ID,
+                          zuweisung => zuweisung.AuftragsID,
+                          auftrag => auftrag.AuftragsID,
                           (zuweisung, auftrag) => auftrag);
                    
 

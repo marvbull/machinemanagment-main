@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using MMSLib.db_models;
+using MMSLib.Model;
 using MMSLib.Klassen;
 
 
@@ -31,11 +31,11 @@ namespace MMS.ViewModel
         {
             //using (var context = new db_connect())
             //{
-            //    var zugeordneteAufträge = await context.Aufgabe_Zuweisung
-            //        .Where(zuweisung => zuweisung.Facharbeiter_ID == facharbeiterId)
+            //    var zugeordneteAufträge = await context.AufgabenZuweisen
+            //        .Where(zuweisung => zuweisung.FacharbeiterID == facharbeiterId)
             //        .Join(context.Auftraege,
-            //              zuweisung => zuweisung.Auftrags_ID,
-            //              auftrag => auftrag.Auftrags_ID,
+            //              zuweisung => zuweisung.AuftragsID,
+            //              auftrag => auftrag.AuftragsID,
             //              (zuweisung, auftrag) => auftrag)
             //        .ToListAsync();
 

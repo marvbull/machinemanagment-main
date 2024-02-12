@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMSLib.db_models
+namespace MMSLib.Model
 {
     public class Maschine
     {
-        public int Maschinen_ID { get; set; }
-        public string? Maschinen_Name { get; set; } // Ich nehme an, dass "bit" als bool interpretiert wird
+        public int MaschinenID { get; set; }
+        public string? MaschinenName { get; set; } // Ich nehme an, dass "bit" als bool interpretiert wird
         public string? Material { get; set; }
-        public bool Maschinen_Status { get; set; }
+        public bool MaschinenStatus { get; set; }
         //public int Auftragsnummer { get; set; } // Fremdschlüssel
         //public int Maschinenstunde { get; set; }
     }

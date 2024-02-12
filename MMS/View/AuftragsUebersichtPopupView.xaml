@@ -8,17 +8,17 @@
         mc:Ignorable="d"
         Title="AuftragsÜbersichtPopupView" Height="450" Width="800">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:AuftragsUebersichtPopupViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Grid>
         <ListView ItemsSource="{Binding Aufträge}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Auftrags_ID}" Width="50"/>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding AuftragsID}" Width="50"/>
                     <GridViewColumn Header="Beschreibung" DisplayMemberBinding="{Binding Beschreibung}" Width="200"/>
-                    <GridViewColumn Header="Maschinen ID" DisplayMemberBinding="{Binding Maschinen_ID}" Width="100"/>
+                    <GridViewColumn Header="Maschinen ID" DisplayMemberBinding="{Binding MaschinenID}" Width="100"/>
                     <GridViewColumn Header="Material" DisplayMemberBinding="{Binding Material}" Width="100"/>
                     <GridViewColumn Header="Abgabe" DisplayMemberBinding="{Binding Abgabe, StringFormat='{}{0:dd/MM/yyyy}'}" Width="100"/>
                     <GridViewColumn Header="Dauer" DisplayMemberBinding="{Binding Dauer}" Width="50"/>

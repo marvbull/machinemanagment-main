@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
-using MMSLib.db_models;
-using System.Threading.Tasks;
+using MMSLib.Model;
 using MMS.View;
-
 
 namespace MMS.ViewModel
 {
@@ -12,6 +12,7 @@ namespace MMS.ViewModel
     {
         private string _inputId;
         private string _errorMessage;
+        private bool _isBusy;
 
         public string InputId
         {
@@ -33,25 +34,43 @@ namespace MMS.ViewModel
             }
         }
 
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged(nameof(IsBusy));
+            }
+        }
+
         public ICommand ConfirmCommand { get; private set; }
 
         public CheckViewModel()
         {
-            ConfirmCommand = new ViewModelCommand(ExecuteConfirmCommand);
+            ConfirmCommand = new ViewModelCommand(async (parameter) => await ExecuteConfirmCommandAsync());
         }
 
-        private async void ExecuteConfirmCommand(object? parameter)
+        private async Task ExecuteConfirmCommandAsync()
         {
-            ErrorMessage = string.Empty; // Fehlermeldung zu Beginn löschen
+            ErrorMessage = string.Empty;
+            IsBusy = true;
 
-            bool idExists = await IdExistsInDatabaseAsync(InputId);
-            if (idExists)
+            try
             {
-                OpenAuftragsUebersichtPopup();
+                bool idExists = await IdExistsInDatabaseAsync(InputId);
+                if (idExists)
+                {
+                    await OpenAuftragsUebersichtPopupAsync();
+                }
+                else
+                {
+                    ErrorMessage = "Ungültige ID.";
+                }
             }
-            else
+            finally
             {
-                ErrorMessage = "Ungültige ID.";
+                IsBusy = false;
             }
         }
 
@@ -61,36 +80,46 @@ namespace MMS.ViewModel
             {
                 try
                 {
-                    using (var context = new db_connect())
+                    using (var context = new DBConnect())
                     {
-                        return await context.Facharbeiter.AnyAsync(f => f.Facharbeiter_ID == numericId);
+                        return await context.Facharbeiter.AnyAsync(f => f.FacharbeiterID == numericId);
                     }
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Fehler bei der Datenbankabfrage: {ex.Message}");
+                    ErrorMessage = $"Fehler bei der Datenbankabfrage: {ex.Message}";
                 }
-            }
-            return false;
-        }
-
-
-        private async void OpenAuftragsUebersichtPopup()
-        {
-            var popup = new AuftragsÜbersichtPopupView();
-            var popupViewModel = new AuftragsUebersichtPopupViewModel();
-            popup.DataContext = popupViewModel;
-
-            if (int.TryParse(InputId, out int facharbeiterId))
-            {
-                await popupViewModel.LoadAufträgeForFacharbeiter(facharbeiterId);
-                popup.ShowDialog();
             }
             else
             {
                 ErrorMessage = "Eingegebene ID ist keine gültige Zahl.";
             }
+
+            return false;
+        }
+
+        private async Task OpenAuftragsUebersichtPopupAsync()
+        {
+            try
+            {
+                var popup = new AuftragsÜbersichtPopupView();
+                var popupViewModel = new AuftragsUebersichtPopupViewModel();
+                popup.DataContext = popupViewModel;
+
+                if (int.TryParse(InputId, out int facharbeiterId))
+                {
+                    await popupViewModel.LoadAufträgeForFacharbeiter(facharbeiterId);
+                    popup.ShowDialog();
+                }
+                else
+                {
+                    ErrorMessage = "Eingegebene ID ist keine gültige Zahl.";
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Fehler beim Öffnen des Popup-Fensters: {ex.Message}";
+            }
         }
     }
 }
-  

@@ -8,10 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <UserControl.DataContext>
-        <vm:CheckViewModel/>
-        <!-- Set the DataContext to an instance of IPConnectionViewModel -->
-    </UserControl.DataContext>
+
 
     <Grid>
         <Grid.RowDefinitions>

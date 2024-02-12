@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using MMSLib.db_models;
+using MMSLib.Model;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -22,8 +22,8 @@ namespace MMS.ViewModel
                 OnPropertyChanged(nameof(SelectedFacharbeiter));
 
                 // Aktualisieren Sie die Eigenschaften FacharbeiterVorname und SelectedFacharbeiterId
-                FacharbeiterVorname = value?.Facharbeiter_Vorname;
-                SelectedFacharbeiterId = value?.Facharbeiter_ID ?? 0;
+                FacharbeiterVorname = value?.FacharbeiterVorname;
+                SelectedFacharbeiterId = value?.FacharbeiterID ?? 0;
                 LoadFacharbeiterDetails();
             }
         }
@@ -104,7 +104,7 @@ namespace MMS.ViewModel
                 // Weisen Sie die ID direkt dem ausgewählten Facharbeiter zu (falls vorhanden)
                 if (SelectedFacharbeiter != null)
                 {
-                    SelectedFacharbeiter.Facharbeiter_ID = value;
+                    SelectedFacharbeiter.FacharbeiterID = value;
                     _selectedFacharbeiterId = value;
                     OnPropertyChanged(nameof(SelectedFacharbeiterId));
 
@@ -126,8 +126,8 @@ namespace MMS.ViewModel
                 OnPropertyChanged(nameof(SelectedMaschine));
 
                 // Aktualisieren Sie die Eigenschaften MaschinenName und SelectedMaschinenId
-                MaschinenName = value?.Maschinen_Name;
-                SelectedMaschinenId = value?.Maschinen_ID ?? 0;
+                MaschinenName = value?.MaschinenName;
+                SelectedMaschinenId = value?.MaschinenID ?? 0;
                 LoadMaschinenDetails();
             }
         }
@@ -156,7 +156,7 @@ namespace MMS.ViewModel
                 // Weisen Sie die ID direkt der ausgewählten Maschine zu (falls vorhanden)
                 if (SelectedMaschine != null)
                 {
-                    SelectedMaschine.Maschinen_ID = value;
+                    SelectedMaschine.MaschinenID = value;
                     _selectedMaschinenId = value;
                     OnPropertyChanged(nameof(SelectedMaschinenId));
 
@@ -184,7 +184,7 @@ namespace MMS.ViewModel
         // Abschnitt: Methoden zum Laden von Facharbeitern und Maschinen
         private async void LoadFacharbeiter()
         {
-            using (var context = new db_connect())
+            using (var context = new DBConnect())
             {
                 var facharbeiter = await context.Facharbeiter.ToListAsync();
                 foreach (var fach in facharbeiter)
@@ -196,7 +196,7 @@ namespace MMS.ViewModel
 
         private async void LoadMaschinen()
         {
-            using (var context = new db_connect())
+            using (var context = new DBConnect())
             {
                 var maschinen = await context.Maschine.ToListAsync();
                 foreach (var maschine in maschinen)
@@ -209,15 +209,15 @@ namespace MMS.ViewModel
         // Abschnitt: Methoden zum Laden von Details zu Facharbeitern und Maschinen
         private async void LoadFacharbeiterDetails()
         {
-            using (var context = new db_connect())
+            using (var context = new DBConnect())
             {
                 var selectedFacharbeiter = await context.Facharbeiter
-                    .FirstOrDefaultAsync(f => f.Facharbeiter_ID == SelectedFacharbeiterId);
+                    .FirstOrDefaultAsync(f => f.FacharbeiterID == SelectedFacharbeiterId);
 
                 if (selectedFacharbeiter != null)
                 {
-                    FacharbeiterNachname = selectedFacharbeiter.Facharbeiter_Name;
-                    FacharbeiterVorname = selectedFacharbeiter.Facharbeiter_Vorname;
+                    FacharbeiterNachname = selectedFacharbeiter.FacharbeiterName;
+                    FacharbeiterVorname = selectedFacharbeiter.FacharbeiterVorname;
                     // Weitere Eigenschaften aktualisieren, wenn erforderlich
                 }
             }
@@ -225,14 +225,14 @@ namespace MMS.ViewModel
 
         private async void LoadMaschinenDetails()
         {
-            using (var context = new db_connect())
+            using (var context = new DBConnect())
             {
                 var selectedMaschine = await context.Maschine
-                    .FirstOrDefaultAsync(m => m.Maschinen_ID == SelectedMaschinenId);
+                    .FirstOrDefaultAsync(m => m.MaschinenID == SelectedMaschinenId);
 
                 if (selectedMaschine != null)
                 {
-                    MaschinenName = selectedMaschine.Maschinen_Name;
+                    MaschinenName = selectedMaschine.MaschinenName;
                     // Weitere Eigenschaften aktualisieren, wenn erforderlich
                 }
             }
@@ -281,7 +281,7 @@ namespace MMS.ViewModel
         {
             try
             {
-                using (var context = new db_connect())
+                using (var context = new DBConnect())
                 {
                     // Erstelle eine neue Instanz von Auftraege und setze die Eigenschaften
                     var auftrag = new Auftraege
@@ -290,7 +290,7 @@ namespace MMS.ViewModel
                         Material = Material,
                         Abgabe = DateTime.Now, // Hier musst du das tatsächliche Abgabedatum setzen
                         Dauer = DauerInMinuten,
-                        Maschinen_ID = SelectedMaschine.Maschinen_ID
+                        MaschinenID = SelectedMaschine.MaschinenID
                         // Andere Eigenschaften, die du setzen möchtest
                     };
 
@@ -298,16 +298,16 @@ namespace MMS.ViewModel
                     context.Auftraege.Add(auftrag);
                     await context.SaveChangesAsync();
 
-                    // Erstelle eine neue Instanz von Aufgabe_Zuweisung und setze die Eigenschaften
-                    var aufgabeZuweisung = new Aufgabe_Zuweisung
+                    // Erstelle eine neue Instanz von AufgabenZuweisen und setze die Eigenschaften
+                    var aufgabeZuweisung = new AufgabenZuweisen
                     {
-                        Auftrags_ID = auftrag.Auftrags_ID,
-                        Facharbeiter_ID = SelectedFacharbeiter.Facharbeiter_ID,
+                        AuftragsID = auftrag.AuftragsID,
+                        FacharbeiterID = SelectedFacharbeiter.FacharbeiterID,
                         // Andere Eigenschaften, die du setzen möchtest
                     };
 
-                    // Füge die Zuweisung zur Tabelle Aufgabe_Zuweisung hinzu
-                    context.Aufgabe_Zuweisung.Add(aufgabeZuweisung);
+                    // Füge die Zuweisung zur Tabelle AufgabenZuweisen hinzu
+                    context.AufgabenZuweisen.Add(aufgabeZuweisung);
                     await context.SaveChangesAsync();
 
                     // Setze die Statusmeldung für die Bestätigung

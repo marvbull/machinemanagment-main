@@ -132,21 +132,21 @@
                                 Style="{StaticResource closebtn}"
                                 Click="btnClose_Click">
                             <icon:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"
-                                               Foreground="{StaticResource BackgroundFreshGreen}"/>
+                                               Foreground="{StaticResource BackgroundLightGrayish}"/>
                         </Button>
 
                         <Button x:Name="btnMaximize"
                                 Style="{StaticResource minimizebtn}"
-                                Click="maxBtn_Click">
+                                Click="maxBtn_Click" Margin="2,0,2,0">
                             <icon:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"
-                                                                  Foreground="{StaticResource BackgroundFreshGreen}"/>
+                                                                  Foreground="{StaticResource BackgroundLightGrayish}"/>
                         </Button>
 
                         <Button x:Name="btnMinimize"
                                 Style="{StaticResource minimizebtn}"
                                 Click="minBtn_Click">
                             <icon:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"
-                                               Foreground="{StaticResource BackgroundVibrantPink}"/>
+                                               Foreground="{StaticResource BackgroundLightGrayish}"/>
                         </Button>
                     </StackPanel>
 

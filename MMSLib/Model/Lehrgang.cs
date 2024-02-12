@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMSLib.db_models
+namespace MMSLib.Model
 {
     public class Lehrgang
     {
-        public int Lehrgang_ID { get; set; } // Auto-Increment
-        public string? Lehrgang_Name { get; set; }
+        public int LehrgangID { get; set; } // Auto-Increment
+        public string? LehrgangName { get; set; }
     }
 
 }

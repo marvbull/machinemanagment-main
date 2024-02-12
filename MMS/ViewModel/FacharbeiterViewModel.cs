@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using MMSLib.db_models;
+using MMSLib.Model;
 
 
 namespace MMS.ViewModel
@@ -17,7 +17,7 @@ namespace MMS.ViewModel
 
         private void LoadFacharbeiter()
         {
-            using (var context = new db_connect())
+            using (var context = new DBConnect())
             {
                 var facharbeiter = context.Facharbeiter.ToList();
                 foreach (var fach in facharbeiter)

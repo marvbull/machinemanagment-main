@@ -7,9 +7,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-
   <ItemGroup>
-    <Folder Include="Model\" />
+    <Compile Remove="Model\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <None Remove="Model\**" />
+    <Page Remove="Model\**" />
   </ItemGroup>
 
 
@@ -21,6 +23,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MMSLib\MMSLib.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Helper\" />
   </ItemGroup>
 
 

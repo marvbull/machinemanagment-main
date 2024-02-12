@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using FontAwesome.Sharp;
-using MMSLib.db_models;
+using MMSLib.Model;
 
 
 namespace MMS.ViewModel
