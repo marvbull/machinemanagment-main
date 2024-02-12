@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using FontAwesome.Sharp;
+using MMS.View;
 using MMSLib.Model;
 
 
@@ -61,11 +62,30 @@ namespace MMS.ViewModel
             Icon = IconChar.Computer;
         }
 
+        //private void ExecuteAuftragAnlegenViewCommand(object? obj)
+        //{
+        //    CurrentChildView = new AuftragAnlegenViewModel();
+        //    Caption = "Auftrag anlegen";
+        //    Icon = IconChar.Coffee;
+        //}
+
         private void ExecuteAuftragAnlegenViewCommand(object? obj)
         {
-            CurrentChildView = new AuftragAnlegenViewModel();
-            Caption = "Auftrag anlegen";
-            Icon = IconChar.Coffee;
+            // Öffne das Fenster zur Eingabe der Vorgesetzten-ID
+            var vorgesetzterEingabeViewModel = new VorgesetzterIDEingabeViewModel();
+            var vorgesetzterEingabeView = new VorgesetzterIDEingabeView();
+            vorgesetzterEingabeView.DataContext = vorgesetzterEingabeViewModel;
+
+            var result = vorgesetzterEingabeView.ShowDialog();
+
+            // Überprüfe das Ergebnis und lade die Kindansicht, wenn die Eingabe erfolgreich war
+            if (result.HasValue && result.Value)
+            {
+                CurrentChildView = new AuftragAnlegenViewModel();
+                Caption = "Auftrag anlegen";
+                Icon = IconChar.Coffee;
+            }
         }
+
     }
 }
