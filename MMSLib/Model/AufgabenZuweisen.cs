@@ -12,6 +12,8 @@ namespace MMSLib.Model
         public int FacharbeiterID { get; set; } // Fremdschlüssel
         public int VorgesetzerID { get; set; } // Fremdschlüssel
         public int Eintrag { get; set; } //Autoincrement
+
+
     }
 
 }

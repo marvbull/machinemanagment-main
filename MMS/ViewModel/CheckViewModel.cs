@@ -10,8 +10,8 @@ namespace MMS.ViewModel
 {
     public class CheckViewModel : ViewModelBase
     {
-        private string _inputId;
-        private string _errorMessage;
+        private string _inputId = string.Empty; // Initialisiert, um CS8618 zu beheben
+        private string _errorMessage = string.Empty; // Initialisiert, um CS8618 zu beheben
         private bool _isBusy;
 
         public string InputId
@@ -45,7 +45,6 @@ namespace MMS.ViewModel
         }
 
         public ICommand ConfirmCommand { get; private set; }
-
         public CheckViewModel()
         {
             ConfirmCommand = new ViewModelCommand(async (parameter) => await ExecuteConfirmCommandAsync());
@@ -108,7 +107,7 @@ namespace MMS.ViewModel
 
                 if (int.TryParse(InputId, out int facharbeiterId))
                 {
-                    await popupViewModel.LoadAufträgeForFacharbeiter(facharbeiterId);
+                    await popupViewModel.LoadAufträgeForFacharbeiterAsync(facharbeiterId);
                     popup.ShowDialog();
                 }
                 else

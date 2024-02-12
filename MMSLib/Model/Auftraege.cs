@@ -15,6 +15,7 @@ namespace MMSLib.Model
         public DateTime Abgabe { get; set; }
         
         public int Dauer { get; set; }
+
     }
 
 }

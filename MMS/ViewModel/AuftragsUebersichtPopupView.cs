@@ -1,20 +1,19 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; // Angenommen, dies wird für asynchrone Datenbankoperationen benötigt.
 using MMSLib.Model;
 using MMSLib.Klassen;
-
 
 namespace MMS.ViewModel
 {
     public class AuftragsUebersichtPopupViewModel : ViewModelBase
     {
-        private ObservableCollection<Auftraege> _aufträge;
+        // Direktinitialisierung, um CS8618 zu vermeiden.
+        private ObservableCollection<Auftraege> _aufträge = new ObservableCollection<Auftraege>();
 
         public ObservableCollection<Auftraege> Aufträge
         {
-            get { return _aufträge; }
+            get => _aufträge;
             set
             {
                 _aufträge = value;
@@ -24,32 +23,22 @@ namespace MMS.ViewModel
 
         public AuftragsUebersichtPopupViewModel()
         {
-            Aufträge = new ObservableCollection<Auftraege>();
+            // Die Direktinitialisierung des _aufträge Felds macht die Initialisierung hier überflüssig.
         }
 
-        public async Task LoadAufträgeForFacharbeiter(int facharbeiterId)
+        public async Task LoadAufträgeForFacharbeiterAsync(int facharbeiterId)
         {
-            //using (var context = new db_connect())
-            //{
-            //    var zugeordneteAufträge = await context.AufgabenZuweisen
-            //        .Where(zuweisung => zuweisung.FacharbeiterID == facharbeiterId)
-            //        .Join(context.Auftraege,
-            //              zuweisung => zuweisung.AuftragsID,
-            //              auftrag => auftrag.AuftragsID,
-            //              (zuweisung, auftrag) => auftrag)
-            //        .ToListAsync();
-
+            // Stellen Sie sicher, dass die Methode LoadAufträgeForFacharbeiterAsync in AuftragAnzeigen auch async ist und Tasks verwendet.
             Aufträge.Clear();
 
+            var auftragAnzeigen = new AuftragAnzeigen();
+            // Beispiel für die Annahme, dass LoadAufträgeForFacharbeiterAsync eine Task-basierte asynchrone Methode ist.
+            var aufträge = await auftragAnzeigen.LoadAufträgeForFacharbeiterAsync(facharbeiterId);
 
-            foreach (var auftrag in new AuftragAnzeigen().LoadAufträgeForFacharbeiter(facharbeiterId))
+            foreach (var auftrag in aufträge)
             {
                 Aufträge.Add(auftrag);
             }
-
         }
-
     }
 }
-
-

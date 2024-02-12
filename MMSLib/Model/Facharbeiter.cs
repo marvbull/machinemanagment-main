@@ -11,6 +11,8 @@ namespace MMSLib.Model
         public int FacharbeiterID { get; set; }
         public string? FacharbeiterName { get; set; }
         public string? FacharbeiterVorname { get; set; }
+
+        
     }
 
 }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MMS.View
 {
     /// <summary>
-    /// Interaktionslogik für AuftragAnlegenView.xaml
+    /// Interaktionslogik für AuftragBearbeitenView.xaml
     /// </summary>
-    public partial class AuftragAnlegenView : UserControl
+    public partial class AuftragBearbeitenView : UserControl
     {
-        public AuftragAnlegenView()
+        public AuftragBearbeitenView()
         {
             InitializeComponent();
         }

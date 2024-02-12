@@ -45,11 +45,13 @@ namespace MMS.ViewModel
 
         public ICommand ShowCheckViewCommand { get; }
         public ICommand ShowAuftragAnlegenViewCommand { get; }
+        public ICommand ShowAuftragBearbeitenViewCommand { get; }
 
         public MainMMSViewModel()
         {
             ShowCheckViewCommand = new ViewModelCommand(ExecuteShowCheckViewCommand);
             ShowAuftragAnlegenViewCommand = new ViewModelCommand(ExecuteAuftragAnlegenViewCommand);
+            ShowAuftragBearbeitenViewCommand = new ViewModelCommand(ExecuteShowAuftragBearbeitenViewCommand);
 
             // Standard-View beim Start
             ExecuteShowCheckViewCommand(null);
@@ -57,92 +59,110 @@ namespace MMS.ViewModel
 
         private void ExecuteShowCheckViewCommand(object? obj)
         {
-            CurrentChildView = new CheckViewModel();
+            CurrentChildView = new CheckViewModel() ?? throw new InvalidOperationException("CheckViewModel konnte nicht erstellt werden.");
             Caption = "Check";
             Icon = IconChar.Computer;
         }
 
+        private void ExecuteShowAuftragBearbeitenViewCommand(object? obj)
+        {
+            CurrentChildView = new AuftragBearbeitenViewModel() ?? throw new InvalidOperationException("AuftragBearbeitenViewModel konnte nicht erstellt werden.");
+            Caption = "Vorgang bearbeiten";
+            Icon = IconChar.Pen;
+        }
+
         private void ExecuteAuftragAnlegenViewCommand(object? obj)
         {
-            var vorgesetzterEingabeViewModel = new VorgesetzterIDEingabeViewModel();
-            var vorgesetzterEingabeView = new VorgesetzterIDEingabeView();
-            vorgesetzterEingabeView.DataContext = vorgesetzterEingabeViewModel;
+            var vorgesetzterEingabeViewModel = new VorgesetzterIDEingabeViewModel() ?? throw new InvalidOperationException("VorgesetzterIDEingabeViewModel konnte nicht erstellt werden.");
+            var vorgesetzterEingabeView = new VorgesetzterIDEingabeView
+            {
+                DataContext = vorgesetzterEingabeViewModel
+            };
 
             vorgesetzterEingabeViewModel.DialogResultChanged += (sender, e) =>
             {
-                if (e.DialogResult)
+                if (e.DialogResult == true) // Stellen Sie sicher, dass das Ergebnis tatsächlich true ist.
                 {
-                    string vorgesetzenID = ((VorgesetzterIDEingabeViewModel)sender).VorgesetztenID;
-                    var auftragAnlegenViewModel = new AuftragAnlegenViewModel();
-                    CurrentChildView = auftragAnlegenViewModel;
-                    auftragAnlegenViewModel.VorgesetztenID = vorgesetzenID;
-                    Caption = "Auftrag anlegen";
-                    Icon = IconChar.Coffee;
+                    // Überprüfen Sie, ob sender vom Typ VorgesetzterIDEingabeViewModel ist.
+                    if (sender is VorgesetzterIDEingabeViewModel vm)
+                    {
+                        string vorgesetztenID = vm.VorgesetztenID ?? throw new InvalidOperationException("VorgesetztenID darf nicht null sein.");
+                        var auftragAnlegenViewModel = new AuftragAnlegenViewModel();
+                        CurrentChildView = auftragAnlegenViewModel; // Kein Null-Check erforderlich, da new immer eine Instanz liefert.
+                        auftragAnlegenViewModel.VorgesetztenID = vorgesetztenID;
+                        Caption = "Vorgang anlegen";
+                        Icon = IconChar.Coffee;
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Sender ist nicht vom Typ VorgesetzterIDEingabeViewModel.");
+                    }
                 }
             };
 
-            vorgesetzterEingabeView.ShowDialog();
 
+            vorgesetzterEingabeView.ShowDialog();
         }
     }
 }
-        //private ViewModelBase? _currentChildView; // Nullable, da beim Start nicht unbedingt initialisiert
-        //private string? _caption; // Nullable, da es keinen initialen Wert hat
-        //private IconChar _icon; // Non-nullable, da IconChar ein Enum ist
 
-        //public ViewModelBase? CurrentChildView
-        //{
-        //    get { return _currentChildView; }
-        //    set
-        //    {
-        //        _currentChildView = value;
-        //        OnPropertyChanged(nameof(CurrentChildView));
-        //    }
-        //}
+//private ViewModelBase? _currentChildView; // Nullable, da beim Start nicht unbedingt initialisiert
+//private string? _caption; // Nullable, da es keinen initialen Wert hat
+//private IconChar _icon; // Non-nullable, da IconChar ein Enum ist
 
-        //public string? Caption
-        //{
-        //    get { return _caption; }
-        //    set
-        //    {
-        //        _caption = value;
-        //        OnPropertyChanged(nameof(Caption));
-        //    }
-        //}
+//public ViewModelBase? CurrentChildView
+//{
+//    get { return _currentChildView; }
+//    set
+//    {
+//        _currentChildView = value;
+//        OnPropertyChanged(nameof(CurrentChildView));
+//    }
+//}
 
-        //public IconChar Icon
-        //{
-        //    get { return _icon; }
-        //    set
-        //    {
-        //        _icon = value;
-        //        OnPropertyChanged(nameof(Icon));
-        //    }
-        //}
+//public string? Caption
+//{
+//    get { return _caption; }
+//    set
+//    {
+//        _caption = value;
+//        OnPropertyChanged(nameof(Caption));
+//    }
+//}
 
-        //public ICommand ShowCheckViewCommand { get; }
-        //public ICommand ShowAuftragAnlegenViewCommand { get; }
+//public IconChar Icon
+//{
+//    get { return _icon; }
+//    set
+//    {
+//        _icon = value;
+//        OnPropertyChanged(nameof(Icon));
+//    }
+//}
 
-        //public MainMMSViewModel()
-        //{
-        //    ShowCheckViewCommand = new ViewModelCommand(ExecuteShowCheckViewCommand);
-        //    ShowAuftragAnlegenViewCommand = new ViewModelCommand(ExecuteAuftragAnlegenViewCommand);
+//public ICommand ShowCheckViewCommand { get; }
+//public ICommand ShowAuftragAnlegenViewCommand { get; }
 
-        //    // Standard-View beim Start
-        //    ExecuteShowCheckViewCommand(null);
-        //}
+//public MainMMSViewModel()
+//{
+//    ShowCheckViewCommand = new ViewModelCommand(ExecuteShowCheckViewCommand);
+//    ShowAuftragAnlegenViewCommand = new ViewModelCommand(ExecuteAuftragAnlegenViewCommand);
 
-        //private void ExecuteShowCheckViewCommand(object? obj)
-        //{
-        //    CurrentChildView = new CheckViewModel();
-        //    Caption = "Check";
-        //    Icon = IconChar.Computer;
-        //}
+//    // Standard-View beim Start
+//    ExecuteShowCheckViewCommand(null);
+//}
 
-        //private void ExecuteAuftragAnlegenViewCommand(object? obj)
-        //{
-        //    CurrentChildView = new AuftragAnlegenViewModel();
-        //    Caption = "Auftrag anlegen";
-        //    Icon = IconChar.Coffee;
-        //}
+//private void ExecuteShowCheckViewCommand(object? obj)
+//{
+//    CurrentChildView = new CheckViewModel();
+//    Caption = "Check";
+//    Icon = IconChar.Computer;
+//}
+
+//private void ExecuteAuftragAnlegenViewCommand(object? obj)
+//{
+//    CurrentChildView = new AuftragAnlegenViewModel();
+//    Caption = "Auftrag anlegen";
+//    Icon = IconChar.Coffee;
+//}
 

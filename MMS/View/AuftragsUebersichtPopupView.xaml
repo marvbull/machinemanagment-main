@@ -3,27 +3,61 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:icon="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:MMS.View"
         xmlns:vm="clr-namespace:MMS.ViewModel"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
         Title="AuftragsÜbersichtPopupView" Height="450" Width="800">
 
-    <!--<Window.DataContext>
-        <vm:AuftragsUebersichtPopupViewModel/>
-    </Window.DataContext>-->
+    <Border>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="{StaticResource DarkCharcoalGray}" Offset="0" />
+                <GradientStop Color="{StaticResource DarkCharcoalGray}" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        
 
-    <Grid>
-        <ListView ItemsSource="{Binding Aufträge}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding AuftragsID}" Width="50"/>
-                    <GridViewColumn Header="Beschreibung" DisplayMemberBinding="{Binding Beschreibung}" Width="200"/>
-                    <GridViewColumn Header="Maschinen ID" DisplayMemberBinding="{Binding MaschinenID}" Width="100"/>
-                    <GridViewColumn Header="Material" DisplayMemberBinding="{Binding Material}" Width="100"/>
-                    <GridViewColumn Header="Abgabe" DisplayMemberBinding="{Binding Abgabe, StringFormat='{}{0:dd/MM/yyyy}'}" Width="100"/>
-                    <GridViewColumn Header="Dauer" DisplayMemberBinding="{Binding Dauer}" Width="50"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--Control bar-->
+                <RowDefinition Height="25"/>
+                <!--Header / Caption -->
+                <RowDefinition Height="35"/>
+                <!--Content section /Child views-->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="pnlControlBar" Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft" Background="Transparent" Margin="0,0,5,0" MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown" MouseEnter="pnlControlBar_MouseEnter">
+                <Button x:Name="btnClose" Style="{StaticResource closebtn}" Click="btnClose_Click">
+                    <icon:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}" Foreground="{StaticResource BackgroundLightGrayish}"/>
+                </Button>
+
+                <Button x:Name="btnMaximize" Style="{StaticResource minimizebtn}" Click="maxBtn_Click" Margin="2,0,2,0">
+                    <icon:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}" Foreground="{StaticResource BackgroundLightGrayish}"/>
+                </Button>
+
+                <Button x:Name="btnMinimize" Style="{StaticResource minimizebtn}" Click="minBtn_Click">
+                    <icon:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}" Foreground="{StaticResource BackgroundLightGrayish}"/>
+                </Button>
+            </StackPanel>
+
+            <ListView ItemsSource="{Binding Aufträge}" Grid.Row="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding AuftragsID}" Width="50"/>
+                        <GridViewColumn Header="Beschreibung" DisplayMemberBinding="{Binding Beschreibung}" Width="200"/>
+                        <GridViewColumn Header="Maschinen ID" DisplayMemberBinding="{Binding MaschinenID}" Width="100"/>
+                        <GridViewColumn Header="Material" DisplayMemberBinding="{Binding Material}" Width="100"/>
+                        <GridViewColumn Header="Abgabe" DisplayMemberBinding="{Binding Abgabe, StringFormat='{}{0:dd/MM/yyyy}'}" Width="100"/>
+                        <GridViewColumn Header="Dauer" DisplayMemberBinding="{Binding Dauer}" Width="50"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Border>
 </Window>

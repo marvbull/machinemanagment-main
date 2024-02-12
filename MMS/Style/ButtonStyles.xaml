@@ -36,7 +36,7 @@
             <!-- Button style when checked (selected) -->
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Margin" Value="0,0,0,5" />
-                <Setter Property="Background" Value="{StaticResource BackgroundDeepSeaBlue}" />
+                <Setter Property="Background" Value="{StaticResource BackgroundCharcoalGray}" />
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}" />
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
             </Trigger>
@@ -130,6 +130,68 @@
         </Style.Triggers>
     </Style>
 
+    <!--Style OK Button-->
+    <Style x:Key="okbtn" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource TextSoftGreen}"/>
+        <Setter Property="Background" Value="{StaticResource TextSoftGreen}"/>
+        <!-- Hintergrundfarbe festlegen -->
+        <Setter Property="Foreground" Value="{StaticResource TextMintCream}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="WMF Rotis Regular"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        CornerRadius="15"
+                        Width="100"
+                        Height="30"
+                        BorderThickness="0"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
+        <!--Style Login Button Mouse Hover Over-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource TextDarkSoftGreen}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Style Abbruch Button-->
+    <Style x:Key="abbruchbtn" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource BackgroundTomatoRed}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundTomatoRed}"/>
+        <!-- Hintergrundfarbe festlegen -->
+        <Setter Property="Foreground" Value="{StaticResource TextMintCream}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="WMF Rotis Regular"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        CornerRadius="15"
+                        Width="100"
+                        Height="30"
+                        BorderThickness="0"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!--Style Login Button Mouse Hover Over-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource TextDarkTomatoRed}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 </ResourceDictionary>

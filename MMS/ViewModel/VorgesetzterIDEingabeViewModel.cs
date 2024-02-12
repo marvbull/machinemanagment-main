@@ -9,49 +9,45 @@ using System.Diagnostics;
 
 namespace MMS.ViewModel
 {
-    public class VorgesetzterIDEingabeViewModel : ViewModelBase
-    {
-        private string _vorgesetztenID;
-        private string _errorMessage;
-      
-        public string VorgesetztenID
+        public class VorgesetzterIDEingabeViewModel : ViewModelBase
         {
-            get { return _vorgesetztenID; }
-            set
+            private string _vorgesetztenID = string.Empty; // Initialisiert, um CS8618 zu beheben
+            private string _errorMessage = string.Empty; // Initialisiert, um CS8618 zu beheben
+
+            public string VorgesetztenID
             {
-                _vorgesetztenID = value;
-                OnPropertyChanged(nameof(VorgesetztenID));
-
+                get { return _vorgesetztenID; }
+                set
+                {
+                    _vorgesetztenID = value;
+                    OnPropertyChanged(nameof(VorgesetztenID));
+                }
             }
-        }
 
-        public string ErrorMessage
-        {
-            get { return _errorMessage; }
-            set
+            public string ErrorMessage
             {
-                _errorMessage = value;
-                OnPropertyChanged(nameof(ErrorMessage));
+                get { return _errorMessage; }
+                set
+                {
+                    _errorMessage = value;
+                    OnPropertyChanged(nameof(ErrorMessage));
+                }
             }
-        }
 
-        public ICommand OKCommand { get; }
-        public ICommand AbbrechenCommand { get; }
+            public ICommand OKCommand { get; }
+            public ICommand AbbrechenCommand { get; }
 
-        public bool DialogResult { get; private set; }
+            public bool DialogResult { get; private set; }
 
-        public event EventHandler<DialogResultChangedEventArgs> DialogResultChanged;
-
-
+            public event EventHandler<DialogResultChangedEventArgs>? DialogResultChanged; // Erlaubt null, keine Initialisierung erforderlich
 
         public VorgesetzterIDEingabeViewModel()
         {
-            
             OKCommand = new ViewModelCommand(ExecuteOKCommand);
             AbbrechenCommand = new ViewModelCommand(ExecuteAbbrechenCommand);
         }
 
-        private void ExecuteOKCommand(object obj)
+        private void ExecuteOKCommand(object? obj) // Parameter als nullable deklariert, um CS8622 zu beheben
         {
             // Führe hier die Validierung der Eingabe durch, falls erforderlich
             if (string.IsNullOrWhiteSpace(VorgesetztenID))
@@ -92,9 +88,9 @@ namespace MMS.ViewModel
             }
         }
 
-        private void ExecuteAbbrechenCommand(object obj)
+        private void ExecuteAbbrechenCommand(object? obj)
         {
-     
+
             DialogResult = false;
             CloseDialog();
         }

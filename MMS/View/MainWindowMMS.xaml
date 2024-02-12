@@ -22,15 +22,19 @@
         <DataTemplate DataType="{x:Type vm:AuftragAnlegenViewModel}">
             <local:AuftragAnlegenView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:AuftragBearbeitenViewModel}">
+            <local:AuftragBearbeitenView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Border CornerRadius="10" BorderThickness="1">
         <!--Border-->
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="{StaticResource DarkSlate}" Offset="0"/>
-                <GradientStop Color="{StaticResource DeepSeaBlue}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource DeepSeaBlue}" Offset="1"/>
+                <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="0"/>
+                <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="0.5"/>
+                <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="1"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
 
@@ -44,8 +48,8 @@
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                        <GradientStop Color="{StaticResource DarkSlate}" Offset="0" />
-                        <GradientStop Color="{StaticResource DarkSlate}" Offset="1" />
+                        <GradientStop Color="{StaticResource DarkCharcoalGray}" Offset="0" />
+                        <GradientStop Color="{StaticResource DarkCharcoalGray}" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
 
@@ -64,7 +68,7 @@
                     </StackPanel>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource BackgroundFreshGreen}"
+                                 Tag="{StaticResource TextOceanBlue}"
                                  IsChecked="true" 
                                  Command="{Binding ShowCheckViewCommand}">
                          
@@ -76,24 +80,24 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource BackgroundVibrantPink}">
-                        <!-- Command="{Binding ShowMachineListViewCommand}"-->
+                                 Tag="{StaticResource TextSandyBrown}"
+                                    Command="{Binding ShowAuftragBearbeitenViewCommand}">
 
-                        <StackPanel Orientation="Horizontal">
-                            <icon:IconImage Icon="Coffee" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Maschinen Aktivitäten" Style="{StaticResource menuButtonText}"/>
+                            <StackPanel Orientation="Horizontal">
+                            <icon:IconImage Icon="Pen" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Auftrag bearbeiten" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource BackgroundVibrantPink}" 
+                                 Tag="{StaticResource TextTomatoRed}" 
                                  Command="{Binding ShowAuftragAnlegenViewCommand}">
             
 
                         <StackPanel Orientation="Horizontal">
-                            <icon:IconImage Icon="Coffee" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Vorgang anlegen" Style="{StaticResource menuButtonText}"/>
+                            <icon:IconImage Icon="Artstation" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Auftrag anlegen" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
@@ -103,8 +107,8 @@
             <Border CornerRadius="0,10,10,0" Grid.Column="2">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="{StaticResource DeepSeaBlue}" Offset="0.5" />
-                        <GradientStop Color="{StaticResource DeepSeaBlue}" Offset="1" />
+                        <GradientStop Color="{StaticResource CharcoalGray}" Offset="0.5" />
+                        <GradientStop Color="{StaticResource CharcoalGray}" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
 
@@ -165,10 +169,10 @@
                                                    Height="20"
                                                    Width="20"
                                                    Margin="35,0,10,0"
-                                                   Foreground="{StaticResource BackgroundFreshGreen}"/>
+                                                   Foreground="{StaticResource TextMintCream}"/>
 
                             <TextBlock Text="{Binding Caption}"
-                                           Foreground="{StaticResource BackgroundFreshGreen}"
+                                           Foreground="{StaticResource TextMintCream}"
                                            FontSize="16"
                                            FontFamily="WMF Rotis Regular"
                                            FontWeight="Medium"

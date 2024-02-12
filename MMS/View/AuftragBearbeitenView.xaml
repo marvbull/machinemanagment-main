@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="MMS.View.AuftragBearbeitenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMS.View"
+             xmlns:vm="clr-namespace:MMS.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" AutoGenerateColumns="False" ItemsSource="{Binding AuftraegeMitFacharbeitern}" Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Auftrags-ID" Binding="{Binding AuftragsID}"/>
+                <DataGridTextColumn Header="Facharbeiter-ID" Binding="{Binding FacharbeiterID}"/>
+                <DataGridTextColumn Header="Beschreibung" Binding="{Binding Beschreibung}"/>
+                <DataGridTextColumn Header="Dauer" Binding="{Binding Dauer}"/>
+                <DataGridTextColumn Header="Vorname" Binding="{Binding FacharbeiterVorname}"/>
+                <DataGridTextColumn Header="Nachname" Binding="{Binding FacharbeiterName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="1" Content="Bearbeiten" Command="{Binding BearbeitenCommand}" HorizontalAlignment="Left" Margin="10,10,0,10" Style="{StaticResource okbtn}"/>
+        <Button Grid.Row="2" Content="Löschen" Command="{Binding LoeschenCommand}" HorizontalAlignment="Left" Margin="10,0,0,10" Style="{StaticResource abbruchbtn}"/>
+    </Grid>
+</UserControl>

@@ -5,23 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMS.View"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
         Title="VorgesetzterIDEingabeView" Height="150" Width="300">
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Border CornerRadius="10" BorderThickness="1">
+            <!--Border Brush wie im MainWindowMMS-->
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <!-- Ersetzen Sie 'LightCharcoalGray' durch die tatsächliche Farbressource -->
+                    <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="0"/>
+                    <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
 
-        <TextBlock Text="Vorgesetzten-ID eingeben:" Margin="5"/>
-        <TextBox Grid.Row="1" x:Name="txtVorgesetztenID" Margin="5" Text="{Binding VorgesetztenID, UpdateSourceTrigger=PropertyChanged}"/>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource CharcoalGray}" Offset="0.5" />
+                    <GradientStop Color="{StaticResource CharcoalGray}" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
 
-        <TextBlock Grid.Row="2" Text="{Binding ErrorMessage}" Foreground="Red" Margin="5"/>
+            <Grid>
+                <!-- Grid Definitionen bleiben gleich -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-            <Button Content="OK" Margin="5" Command="{Binding OKCommand}"/>
-            <Button Content="Abbrechen" Margin="5" Command="{Binding AbbrechenCommand}"/>
-        </StackPanel>
+                <!-- Hier fügen Sie Ihre Inhalte ein, angepasst an das neue Layout -->
+                <TextBlock Text="Vorgesetzten-ID eingeben:" Margin="5" Foreground="{StaticResource TextMintCream}"/>
+                <TextBox Grid.Row="1" x:Name="txtVorgesetztenID" Margin="5" Text="{Binding VorgesetztenID, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="2" Text="{Binding ErrorMessage}" Foreground="{StaticResource TextTomatoRed}" Margin="5"/>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Button Content="OK" Margin="5" Command="{Binding OKCommand}" Style="{StaticResource okbtn}"/>
+                    <Button Content="Abbrechen" Margin="5" Command="{Binding AbbrechenCommand}" Style="{StaticResource abbruchbtn}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
