@@ -24,7 +24,9 @@ namespace MMS.View
         public AuftragAnlegenView()
         {
             InitializeComponent();
-            DataContext = new AuftragAnlegenViewModel();
+            //DataContext = new AuftragAnlegenViewModel();
+            //DataContext = new VorgesetzterIDEingabeViewModel();
+            //DataContext = new MainMMSViewModel();
         }
     }
 }

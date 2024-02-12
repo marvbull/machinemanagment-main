@@ -72,13 +72,17 @@ namespace MMS.ViewModel
             {
                 if (e.DialogResult)
                 {
-                    CurrentChildView = new AuftragAnlegenViewModel();
+                    string vorgesetzenID = ((VorgesetzterIDEingabeViewModel)sender).VorgesetztenID;
+                    var auftragAnlegenViewModel = new AuftragAnlegenViewModel();
+                    CurrentChildView = auftragAnlegenViewModel;
+                    auftragAnlegenViewModel.VorgesetztenID = vorgesetzenID;
                     Caption = "Auftrag anlegen";
                     Icon = IconChar.Coffee;
                 }
             };
 
             vorgesetzterEingabeView.ShowDialog();
+
         }
     }
 }

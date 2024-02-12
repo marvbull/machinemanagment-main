@@ -23,7 +23,7 @@ namespace MMS.View
         public VorgesetzterIDEingabeView()
         {
             InitializeComponent();
-            DataContext = new VorgesetzterIDEingabeViewModel();
+            //DataContext = new VorgesetzterIDEingabeViewModel();
         }
     }
 }

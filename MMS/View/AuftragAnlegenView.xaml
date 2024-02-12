@@ -88,5 +88,9 @@
         <TextBlock Grid.Row="8" Margin="0,48,10,-38"
            Text="{Binding StatusMessage, UpdateSourceTrigger=PropertyChanged}"
            Foreground="Green"/>
+        <Label Content="Vorgesetzten ID:" Grid.Row="8" Margin="0,36,10,-26"/>
+        <TextBox Grid.Row="8" Margin="140,36,5,-26"
+        Text="{Binding VorgesetztenID, Mode=OneWay}"
+         IsEnabled="False"/>
     </Grid>
 </UserControl>

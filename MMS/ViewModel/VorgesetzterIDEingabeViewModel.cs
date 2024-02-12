@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Input;
 using MMSLib.Model;
 using MMS.Helper;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace MMS.ViewModel
 {
@@ -11,7 +13,7 @@ namespace MMS.ViewModel
     {
         private string _vorgesetztenID;
         private string _errorMessage;
-
+      
         public string VorgesetztenID
         {
             get { return _vorgesetztenID; }
@@ -19,6 +21,7 @@ namespace MMS.ViewModel
             {
                 _vorgesetztenID = value;
                 OnPropertyChanged(nameof(VorgesetztenID));
+
             }
         }
 
@@ -39,8 +42,11 @@ namespace MMS.ViewModel
 
         public event EventHandler<DialogResultChangedEventArgs> DialogResultChanged;
 
+
+
         public VorgesetzterIDEingabeViewModel()
         {
+            
             OKCommand = new ViewModelCommand(ExecuteOKCommand);
             AbbrechenCommand = new ViewModelCommand(ExecuteAbbrechenCommand);
         }
@@ -54,8 +60,7 @@ namespace MMS.ViewModel
                 return;
             }
 
-            // Hier kommt deine Logik zur Überprüfung der Vorgesetzten-ID mit der Tabelle Vorgesetzer
-            // Angenommen, du hast eine Datenbankverbindung und eine entsprechende Methode in einem Repository oder Service
+            
 
             bool vorgesetzerExists = CheckVorgesetzerExists(VorgesetztenID);
 
@@ -89,14 +94,14 @@ namespace MMS.ViewModel
 
         private void ExecuteAbbrechenCommand(object obj)
         {
-            // Setze DialogResult auf false, um anzuzeigen, dass die Eingabe abgebrochen wurde
+     
             DialogResult = false;
             CloseDialog();
         }
 
         private void CloseDialog()
         {
-            // Schließe das Fenster, in dem dieses ViewModel verwendet wird
+           
             Window window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.DataContext == this);
             window?.Close();
         }
