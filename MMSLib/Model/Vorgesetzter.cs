@@ -11,7 +11,6 @@ namespace MMSLib.Model
         public string? VorgesetzerID { get; set; }
         public string? VorgesetzerName { get; set; }
         public string? VorgesetzerVorname { get; set; }
-        public string? Passwort { get; set; }
     }
 
 }
