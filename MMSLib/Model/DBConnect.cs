@@ -21,13 +21,12 @@ namespace MMSLib.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Stellen Sie sicher, dass die Verbindungszeichenfolge korrekt ist
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=MMS-Database;Trusted_Connection=True;");
             }
         }
 
-        //Pfad Marvin: optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=MMS-Database;Trusted_Connection=True;");
-        //Pfad Carla:optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=MMS-Database;Trusted_Connection=True;");
+    //Pfad Marvin: optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=MMS-Database;Trusted_Connection=True;");
+    //Pfad Carla:optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=MMS-Database;Trusted_Connection=True;");
     //Pfad Julian:
     //Pfad Nikolas:
 
