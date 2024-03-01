@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using MMSLib.Klassen;
 
 namespace MMS.ViewModel
 {
@@ -13,6 +14,8 @@ namespace MMS.ViewModel
         private Facharbeiter _selectedFacharbeiter;
         private VorgesetzterIDEingabeViewModel _vorgesetzterIDEingabeViewModel;
         private string _vorgesetztenID;
+
+
 
         public string VorgesetztenID
         {
@@ -173,6 +176,9 @@ namespace MMS.ViewModel
 
             LoadFacharbeiter();
             LoadMaschinen();
+
+            var context = new DBConnect(); // Achte darauf, den richtigen DB-Kontext zu verwenden
+            _maschinenÜberschneidung = new MaschinenÜberschneidung(context);
         }
 
         private async void LoadFacharbeiter()
@@ -260,8 +266,20 @@ namespace MMS.ViewModel
             return SelectedFacharbeiter != null && SelectedMaschine != null;
         }
 
+
+        private MaschinenÜberschneidung _maschinenÜberschneidung;
+
+
         private async Task AuftragAnlegenAsync()
         {
+            // Überprüfe, ob die Maschine zum ausgewählten Startzeitpunkt verfügbar ist
+            bool istVerfügbar = await _maschinenÜberschneidung.IstMaschineVerfuegbar(SelectedStart, DauerInMinuten, SelectedMaschine.MaschinenID);
+            if (!istVerfügbar)
+            {
+                StatusMessage = "Die ausgewählte Maschine ist im angegebenen Zeitraum bereits belegt.";
+                return; // Beende die Methode frühzeitig, wenn die Maschine nicht verfügbar ist
+            }
+
             try
             {
                 using (var context = new DBConnect())
@@ -270,7 +288,7 @@ namespace MMS.ViewModel
                     {
                         Beschreibung = Beschreibung,
                         Material = Material,
-                        Abgabe = SelectedStart.AddDays(Math.Ceiling(DauerInMinuten / 480.0)), // Math.Ceiling für aufrundung
+                        Abgabe = SelectedStart.AddDays(Math.Ceiling(DauerInMinuten / 480.0)),
                         Dauer = DauerInMinuten,
                         MaschinenID = SelectedMaschine.MaschinenID,
                         Beginn = SelectedStart

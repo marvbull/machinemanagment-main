@@ -15,7 +15,7 @@ namespace MMS
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e) //chat fragen ob mvvm pattern
         {
             base.OnStartup(e);
 
