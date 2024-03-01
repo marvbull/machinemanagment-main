@@ -149,6 +149,20 @@ namespace MMS.ViewModel
             }
         }
 
+        private DateTime _selectedStart;
+        public DateTime SelectedStart
+        {
+            get { return _selectedStart; }
+            set
+            {
+                if (_selectedStart != value)
+                {
+                    _selectedStart = value;
+                    OnPropertyChanged(nameof(SelectedStart));
+                }
+            }
+        }
+
         public ObservableCollection<Facharbeiter> FacharbeiterList { get; private set; }
         public ObservableCollection<Maschine> MaschinenList { get; private set; }
 
@@ -256,9 +270,10 @@ namespace MMS.ViewModel
                     {
                         Beschreibung = Beschreibung,
                         Material = Material,
-                        Abgabe = DateTime.Now,
+                        Abgabe = SelectedStart.AddDays(Math.Ceiling(DauerInMinuten / 480.0)), // Math.Ceiling für aufrundung
                         Dauer = DauerInMinuten,
-                        MaschinenID = SelectedMaschine.MaschinenID
+                        MaschinenID = SelectedMaschine.MaschinenID,
+                        Beginn = SelectedStart
                     };
 
                     context.Auftraege.Add(auftrag);

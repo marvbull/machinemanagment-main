@@ -14,7 +14,7 @@ namespace MMSLib.Model
         public string? Material { get; set; }
         public DateTime Abgabe { get; set; }
         public int Dauer { get; set; }
-        //public DateTime Beginn { get; set; }
+        public DateTime Beginn { get; set; }
 
     }
 
