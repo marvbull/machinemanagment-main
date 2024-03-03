@@ -179,6 +179,7 @@ namespace MMS.ViewModel
 
             var context = new DBConnect(); // Achte darauf, den richtigen DB-Kontext zu verwenden
             _maschinenÜberschneidung = new MaschinenÜberschneidung(context);
+            _naechstesDatum = new NaechstesDatum(context);
         }
 
         private async void LoadFacharbeiter()
@@ -268,16 +269,20 @@ namespace MMS.ViewModel
 
 
         private MaschinenÜberschneidung _maschinenÜberschneidung;
-
+        private NaechstesDatum _naechstesDatum;
 
         private async Task AuftragAnlegenAsync()
         {
-            // Überprüfe, ob die Maschine zum ausgewählten Startzeitpunkt verfügbar ist
+            // Überprüfe zunächst, ob die Maschine zum ausgewählten Startzeitpunkt verfügbar ist.
             bool istVerfügbar = await _maschinenÜberschneidung.IstMaschineVerfuegbar(SelectedStart, DauerInMinuten, SelectedMaschine.MaschinenID);
             if (!istVerfügbar)
             {
-                StatusMessage = "Die ausgewählte Maschine ist im angegebenen Zeitraum bereits belegt.";
-                return; // Beende die Methode frühzeitig, wenn die Maschine nicht verfügbar ist
+                // Wenn nicht verfügbar, finde das nächste verfügbare Datum.
+                var nächstesVerfügbaresDatum = await _naechstesDatum.FindeNächstesVerfügbaresZeitfenster(SelectedMaschine.MaschinenID, TimeSpan.FromMinutes(DauerInMinuten));
+
+                // Aktualisiere die Statusmeldung, um den Nutzer über das nächste verfügbare Datum zu informieren.
+                StatusMessage = $"Die ausgewählte Maschine ist im angegebenen Zeitraum bereits belegt. Das nächstmögliche Startdatum wäre: {nächstesVerfügbaresDatum.Value.ToString("g")}";
+                return; // Beende die Methode, ohne den Auftrag anzulegen.
             }
 
             try
