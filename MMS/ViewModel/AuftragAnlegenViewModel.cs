@@ -236,16 +236,34 @@ namespace MMS.ViewModel
             }
         }
 
-        private string _statusMessage;
-        public string StatusMessage
+        private string _successMessage;
+        public string SuccessMessage
         {
-            get { return _statusMessage; }
+            get { return _successMessage; }
             set
             {
-                _statusMessage = value;
-                OnPropertyChanged(nameof(StatusMessage));
+                if (_successMessage != value)
+                {
+                    _successMessage = value;
+                    OnPropertyChanged(nameof(SuccessMessage));
+                }
             }
         }
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                if (_errorMessage != value)
+                {
+                    _errorMessage = value;
+                    OnPropertyChanged(nameof(ErrorMessage));
+                }
+            }
+        }
+
 
         private ViewModelCommand _auftragAnlegenCommand;
         public ICommand AuftragAnlegenCommand
@@ -274,6 +292,11 @@ namespace MMS.ViewModel
 
         private async Task AuftragAnlegenAsync()
         {
+            //Das nur eine Message angezeigt wird
+            SuccessMessage = string.Empty;
+            ErrorMessage = string.Empty;
+
+
             // Überprüfe zunächst, ob die Maschine zum ausgewählten Startzeitpunkt verfügbar ist.
             bool istVerfügbar = await _maschinenÜberschneidung.IstMaschineVerfuegbar(SelectedStart, DauerInMinuten, SelectedMaschine.MaschinenID);
             if (!istVerfügbar)
@@ -282,7 +305,7 @@ namespace MMS.ViewModel
                 var nächstesVerfügbaresDatum = await _naechstesDatum.FindeNächstesVerfügbaresZeitfenster(SelectedMaschine.MaschinenID, TimeSpan.FromMinutes(DauerInMinuten));
 
                 // Aktualisiere die Statusmeldung, um den Nutzer über das nächste verfügbare Datum zu informieren.
-                StatusMessage = $"Die ausgewählte Maschine ist im angegebenen Zeitraum bereits belegt. Das nächstmögliche Startdatum wäre: {nächstesVerfügbaresDatum.Value.ToString("g")}";
+                ErrorMessage = $"Die ausgewählte Maschine ist im angegebenen Zeitraum bereits belegt. Das nächstmögliche Startdatum wäre: {nächstesVerfügbaresDatum.Value.ToString("g")}";
                 return; // Beende die Methode, ohne den Auftrag anzulegen.
             }
 
@@ -312,13 +335,13 @@ namespace MMS.ViewModel
                     context.AufgabenZuweisen.Add(aufgabeZuweisung);
                     await context.SaveChangesAsync();
 
-                    StatusMessage = "Auftrag erfolgreich angelegt!";
+                    SuccessMessage = "Auftrag erfolgreich angelegt!";
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Fehler beim Anlegen des Auftrags: {ex.Message}");
-                StatusMessage = "Fehler beim Anlegen des Auftrags!";
+                ErrorMessage = "Fehler beim Anlegen des Auftrags!";
             }
         }
     }

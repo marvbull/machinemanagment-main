@@ -117,7 +117,7 @@ namespace MMS.ViewModel
             }
             catch (Exception ex)
             {
-                ErrorMessage = $"Fehler beim Öffnen des Popup-Fensters: {ex.Message}";
+                ErrorMessage = $"Fehler beim Öffnen des Popup-Fensters:  {ex.Message}";
             }
         }
     }

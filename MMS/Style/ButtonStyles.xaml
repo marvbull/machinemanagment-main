@@ -194,4 +194,37 @@
         </Style.Triggers>
     </Style>
 
+
+    <!--Style OK Button-->
+    <Style x:Key="bstbtn" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource TextSoftGreen}"/>
+        <Setter Property="Background" Value="{StaticResource TextSoftGreen}"/>
+        <!-- Hintergrundfarbe festlegen -->
+        <Setter Property="Foreground" Value="{StaticResource TextMintCream}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="WMF Rotis Regular"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        CornerRadius="25"
+                        Width="180"
+                        Height="50"
+                        BorderThickness="0"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!--Style Login Button Mouse Hover Over-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource TextDarkSoftGreen}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

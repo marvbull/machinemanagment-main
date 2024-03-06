@@ -62,8 +62,8 @@
 
             <!-- Button und Statusmeldung -->
             <Button Content="Auftrag anlegen" Command="{Binding AuftragAnlegenCommand}" Margin="5" HorizontalAlignment="Right" Padding="10,5" Style="{StaticResource okbtn}"/>
-            <TextBlock Text="{Binding StatusMessage}" Foreground="Green" HorizontalAlignment="Center" Margin="5"/>
-            <TextBlock Text="{Binding StatusMessage}" Foreground="Red" HorizontalAlignment="Center" Margin="5"/>
+            <TextBlock Text="{Binding SuccessMessage}" Foreground="{StaticResource TextDarkSoftGreen}" HorizontalAlignment="Center" Margin="5"/>
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="{StaticResource TextCrimsonRed}" HorizontalAlignment="Center" Margin="5"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

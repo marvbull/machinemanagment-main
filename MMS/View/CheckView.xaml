@@ -8,58 +8,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <!-- Abstand oben -->
             <RowDefinition Height="Auto"/>
-            <!-- Titelzeile -->
             <RowDefinition Height="20"/>
-            <!-- Abstand zwischen Titel und Eingabefeld -->
             <RowDefinition Height="Auto"/>
-            <!-- Eingabefeld -->
             <RowDefinition Height="30"/>
-            <!-- Abstand zwischen Eingabefeld und Button -->
             <RowDefinition Height="Auto"/>
-            <!-- Button -->
             <RowDefinition Height="40"/>
-            <!-- Abstand zwischen Button und Informationstext -->
             <RowDefinition Height="Auto"/>
-            <!-- Informationstext -->
             <RowDefinition Height="1*"/>
-            <!-- Abstand unten -->
         </Grid.RowDefinitions>
 
-        <!-- Anweisungstext -->
-        <TextBlock Grid.Row="1" Text="Geben Sie Ihre ID ein:" Foreground="{StaticResource BackgroundLightGrayish}"
-                   HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+        <!-- Anweisungstext aktualisiert mit MintCream Farbe -->
+        <TextBlock Grid.Row="1" Text="Geben Sie Ihre ID ein:" 
+                   Foreground="{StaticResource TextMintCream}"
+                   HorizontalAlignment="Center" VerticalAlignment="Top" 
+                   FontSize="15"/>
 
-        <!-- Eingabefeld -->
+        <!-- Eingabefeld bleibt gleich -->
         <TextBox Grid.Row="3" Text="{Binding InputId, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Center" VerticalAlignment="Center"
                  MaxLength="7" Width="250" Height="35" FontSize="20"
-                 TextAlignment="Center" BorderThickness="1" BorderBrush="#FFCCCCCC"
+                 TextAlignment="Center" 
                  Margin="0,0,0,10"/>
 
-        <!-- Fehlermeldung -->
+        <!-- Fehlermeldung aktualisiert mit MintCream Farbe (wenn gewünscht, sonst rot belassen) -->
         <TextBlock Grid.Row="4" Text="{Binding ErrorMessage}"
-                   Foreground="Red" HorizontalAlignment="Center"
+                   Foreground="{StaticResource TextCrimsonRed}" HorizontalAlignment="Center"
                    VerticalAlignment="Center" Margin="0,10"/>
 
-        <!-- Bestätigungsbutton -->
+        <!-- Bestätigungsbutton bleibt unverändert, da der Style beibehalten werden soll -->
         <Button Grid.Row="5" Content="Bestätigen" Command="{Binding ConfirmCommand}"
-                Width="150" Height="40" HorizontalAlignment="Center"
-                VerticalAlignment="Center" Background="#FF4CAF50"
-                Foreground="White" BorderBrush="{x:Null}" FontSize="16"
-                FontWeight="Bold" Cursor="Hand" Margin="0,0,0,10"/>
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                Style="{StaticResource bstbtn}"/>
 
-        <!-- Informationstext -->
+        <!-- Informationstext aktualisiert mit MintCream Farbe -->
         <TextBlock Grid.Row="7" Text="Bitte geben Sie Ihre Personalnummer ein, um die zugeordneten Aufträge einzusehen." 
                    HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Opacity="0.6"
-                   Margin="20" Foreground="{StaticResource BackgroundLightGrayish}" />
+                   TextWrapping="Wrap" TextAlignment="Center" Opacity="0.6"
+                   Margin="20" Foreground="{StaticResource TextMintCream}" />
     </Grid>
 </UserControl>
