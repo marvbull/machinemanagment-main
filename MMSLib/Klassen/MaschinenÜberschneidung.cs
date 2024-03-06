@@ -18,11 +18,14 @@ namespace MMSLib.Klassen
 
         public async Task<bool> IstMaschineVerfuegbar(DateTime start, int dauerInMinuten, int maschinenId)
         {
+            // Berechnet die Endzeit des Auftrags basierend auf dem Startzeitpunkt und der Dauer
             var endzeit = start.AddMinutes(dauerInMinuten);
+            // Überprüft, ob es Aufträge gibt, die sich mit dem geplanten Zeitfenster überschneiden
             var ueberschneidung = await _context.Auftraege
                 .AnyAsync(a => a.MaschinenID == maschinenId &&
-                               ((a.Beginn < endzeit && a.Beginn >= start) ||
-                                (a.Abgabe > start && a.Abgabe <= endzeit)));
+                               ((a.Beginn < endzeit && a.Beginn >= start) || // Überprüft, ob der Beginn des existierenden Auftrags innerhalb des geplanten Zeitfensters liegt
+                                (a.Abgabe > start && a.Abgabe <= endzeit))); // Überprüft, ob das Ende des existierenden Auftrags innerhalb des geplanten Zeitfensters liegt
+
             return !ueberschneidung;
         }
     }
