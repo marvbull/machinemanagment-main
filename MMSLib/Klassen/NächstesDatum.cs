@@ -65,7 +65,7 @@ public class NaechstesDatum
         // Berechne die Anzahl der benötigten vollen Arbeitstage
         int volleTage = (int)Math.Ceiling(dauer.TotalHours / 8.0);
         nächsterStart = nächsterStart.Value.Date.AddHours(8); // Beginn um 08:00 Uhr am nächsten möglichen Tag
-        nächsterStart = nächsterStart.Value.AddDays(volleTage - 1); // Addiere die benötigten vollen Tage
+        nächsterStart = nächsterStart.Value.AddDays(volleTage); // Addiere die benötigten vollen Tage
 
         return nächsterStart;
     }
