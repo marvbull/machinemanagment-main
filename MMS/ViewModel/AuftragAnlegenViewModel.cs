@@ -166,6 +166,7 @@ namespace MMS.ViewModel
             }
         }
 
+
         public ObservableCollection<Facharbeiter> FacharbeiterList { get; private set; }
         public ObservableCollection<Maschine> MaschinenList { get; private set; }
 
