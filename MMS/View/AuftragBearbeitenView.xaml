@@ -24,6 +24,8 @@
                 <DataGridTextColumn Header="Dauer" Binding="{Binding Dauer}"/>
                 <DataGridTextColumn Header="Vorname" Binding="{Binding FacharbeiterVorname}"/>
                 <DataGridTextColumn Header="Nachname" Binding="{Binding FacharbeiterName}"/>
+                <DataGridTextColumn Header="Beginn" Binding="{Binding Beginn}"/>
+                <DataGridTextColumn Header="Abgabe" Binding="{Binding Abgabe}"/>
             </DataGrid.Columns>
         </DataGrid>
 

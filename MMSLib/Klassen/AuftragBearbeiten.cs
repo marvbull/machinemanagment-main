@@ -22,22 +22,13 @@ namespace MMSLib.Klassen
                                  auftrag.Beschreibung,
                                  auftrag.Dauer,
                                  FacharbeiterVorname = facharbeiter.FacharbeiterVorname,
-                                 FacharbeiterName = facharbeiter.FacharbeiterName
+                                 FacharbeiterName = facharbeiter.FacharbeiterName,
+                                 auftrag.Beginn, 
+                                 auftrag.Abgabe,
                              }).ToList<dynamic>();
 
                 return query;
             }
         }
-
-        //private dynamic _selectedAuftrag;
-        //public dynamic SelectedAuftrag
-        //{
-        //    get => _selectedAuftrag;
-        //    set
-        //    {
-        //        _selectedAuftrag = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
     }
 }
