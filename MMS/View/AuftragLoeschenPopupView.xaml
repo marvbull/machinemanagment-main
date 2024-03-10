@@ -1,0 +1,52 @@
+﻿<Window x:Class="MMS.View.AuftragLoeschenPopupView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MMS.View"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="AuftragsIDEingabeView" Height="150" Width="300">
+
+    <Grid>
+        <Border CornerRadius="10" BorderThickness="1">
+            <Border.BorderBrush>
+                <!-- Stellen Sie sicher, dass Sie die gleichen Farbressourcen wie im Hauptfenster haben -->
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="0"/>
+                    <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource LightCharcoalGray}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource CharcoalGray}" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource CharcoalGray}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Auftrags-ID eingeben:" Margin="5" Foreground="{StaticResource TextMintCream}"/>
+                <TextBox Grid.Row="1" x:Name="txtAuftragsID" Margin="5" Text="{Binding AuftragsID, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="2" Text="{Binding ErrorMessage}" Foreground="{StaticResource TextTomatoRed}" Margin="5"/>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Button Content="OK" Margin="5" Command="{Binding OKCommand}" Style="{StaticResource okbtn}"/>
+                    <Button Content="Abbrechen" Margin="5" Command="{Binding AbbrechenCommand}" Style="{StaticResource abbruchbtn}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,100 +1,48 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- Helle Farbdefinitionen -->
-    <Color x:Key="LightGray">#CAD3D3</Color>
-    <Color x:Key="LightGrayish">#E2E5E6</Color>
-    <Color x:Key="Lavender">#E6E6FA</Color>
-    <Color x:Key="VibrantPink">#E05263</Color>
-    <Color x:Key="RichYellow">#FFC107</Color>
 
-    <!-- Mittlere Farbdefinitionen -->
-    <Color x:Key="SoftGreen">#6DBD63</Color>
-    <Color x:Key="DarkSoftGreen">#57974F</Color>
-    <Color x:Key="FreshGreen">#53E064</Color>
-    <Color x:Key="SoftBlue">#87CEEB</Color>
-    <Color x:Key="ModernBlue">#327DA0</Color>
-    <Color x:Key="DeepSeaBlue">#284B63</Color>
-    <Color x:Key="ProfessionalGray">#4F5B69</Color>
-    <Color x:Key="GrayishBlue">#919A9C</Color>
-
-    <!-- Dunkle Farbdefinitionen -->
-    <Color x:Key="DarkGray">#37474F</Color>
-    <Color x:Key="DarkSlate">#102533</Color>
-    <Color x:Key="DunklesMarineblau">#090B32</Color>
-    <Color x:Key="CrimsonRed">#DC143C</Color>
-    <Color x:Key="TealBlue">#008080</Color>
-
-    <!-- Hintergrundfarben sortiert nach Farbton und Helligkeit -->
-    <SolidColorBrush x:Key="BackgroundLightGray" Color="#CAD3D3"/>
-    <SolidColorBrush x:Key="BackgroundLightGrayish" Color="#E2E5E6"/>
-    <SolidColorBrush x:Key="BackgroundLavender" Color="#E6E6FA"/>
-    <SolidColorBrush x:Key="BackgroundVibrantPink" Color="#E05263"/>
-    <SolidColorBrush x:Key="BackgroundRichYellow" Color="#FFC107"/>
-    <SolidColorBrush x:Key="BackgroundSoftGreen" Color="#6DBD63"/>
-    <SolidColorBrush x:Key="BackgroundFreshGreen" Color="#53E064"/>
-    <SolidColorBrush x:Key="BackgroundSoftBlue" Color="#87CEEB"/>
-    <SolidColorBrush x:Key="BackgroundModernBlue" Color="#327DA0"/>
-    <SolidColorBrush x:Key="BackgroundDeepSeaBlue" Color="#284B63"/>
-    <SolidColorBrush x:Key="BackgroundProfessionalGray" Color="#4F5B69"/>
-    <SolidColorBrush x:Key="BackgroundGrayishBlue" Color="#919A9C"/>
-    <SolidColorBrush x:Key="BackgroundDarkGray" Color="#37474F"/>
-    <SolidColorBrush x:Key="BackgroundDarkSlate" Color="#102533"/>
-    <SolidColorBrush x:Key="BackgroundDunklesMarineblau" Color="#090B32"/>
-    <SolidColorBrush x:Key="BackgroundCrimsonRed" Color="#DC143C"/>
-    <SolidColorBrush x:Key="BackgroundTealBlue" Color="#008080"/>
-
-    <!-- Textfarben sortiert nach Farbton und Helligkeit -->
-    <SolidColorBrush x:Key="TextLightGray" Color="#CAD3D3"/>
-    <SolidColorBrush x:Key="TextLightGrayish" Color="#E2E5E6"/>
-    <SolidColorBrush x:Key="TextLavender" Color="#E6E6FA"/>
-    <SolidColorBrush x:Key="TextVibrantPink" Color="#E05263"/>
-    <SolidColorBrush x:Key="TextRichYellow" Color="#FFC107"/>
-    <SolidColorBrush x:Key="TextSoftGreen" Color="#6DBD63"/>
-    <SolidColorBrush x:Key="TextDarkSoftGreen" Color="#57974F"/>
-    <SolidColorBrush x:Key="TextFreshGreen" Color="#53E064"/>
-    <SolidColorBrush x:Key="TextSoftBlue" Color="#87CEEB"/>
-    <SolidColorBrush x:Key="TextModernBlue" Color="#327DA0"/>
-    <SolidColorBrush x:Key="TextDeepSeaBlue" Color="#284B63"/>
-    <SolidColorBrush x:Key="TextProfessionalGray" Color="#4F5B69"/>
-    <SolidColorBrush x:Key="TextGrayishBlue" Color="#919A9C"/>
-    <SolidColorBrush x:Key="TextDarkGray" Color="#37474F"/>
-    <SolidColorBrush x:Key="TextDarkSlate" Color="#102533"/>
-    <SolidColorBrush x:Key="TextDunklesMarineblau" Color="#090B32"/>
-    <SolidColorBrush x:Key="TextCrimsonRed" Color="#DC143C"/>
-    <SolidColorBrush x:Key="TextTealBlue" Color="#008080"/>
-
-
-    <Color x:Key="AquaMarine">#8CBEBD</Color>
-    <Color x:Key="OceanBlue">#67A1A4</Color>
-    <Color x:Key="MintCream">#E2F6F4</Color>
     <Color x:Key="CharcoalGray">#2F2C37</Color>
-    <Color x:Key="SandyBrown">#EFB668</Color>
-    <Color x:Key="TomatoRed">#F06060</Color>
-    <Color x:Key="ChampagnePink">#F3EAC3</Color>
     <Color x:Key="LightCharcoalGray">#4D4A55</Color>
     <Color x:Key="DarkCharcoalGray">#110E19</Color>
+    <Color x:Key="ColorLightGrayish">#E2E5E6</Color>
+    <Color x:Key="ColorVibrantPink">#E05263</Color>
+    <Color x:Key="ColorFreshGreen">#53E064</Color>
+    <Color x:Key="ColorGrayishBlue">#919A9C</Color>
+    <Color x:Key="ColorDarkSlate">#102533</Color>
+    <Color x:Key="ColorDunklesMarineblau">#090B32</Color>
+    <Color x:Key="ColorTomatoRed">#F06060</Color>
+    <Color x:Key="ColorDarkSoftGreen">#57974F</Color>
+    <Color x:Key="ColorCrimsonRed">#DC143C</Color>
+    <Color x:Key="ColorOceanBlue">#67A1A4</Color>
+    <Color x:Key="ColorMintCream">#E2F6F4</Color>
+    <Color x:Key="ColorSandyBrown">#EFB668</Color>
+    <Color x:Key="ColorDarkTomatoRed">#C04C4C</Color>
 
 
+    <!-- Hintergrundfarben -->
 
-    <SolidColorBrush x:Key="BackgroundAquaMarine" Color="#8CBEBD"/>
-    <SolidColorBrush x:Key="BackgroundOceanBlue" Color="#67A1A4"/>
-    <SolidColorBrush x:Key="BackgroundMintCream" Color="#E2F6F4"/>
-    <SolidColorBrush x:Key="BackgroundCharcoalGray" Color="#2F2C37"/>
-    <SolidColorBrush x:Key="BackgroundSandyBrown" Color="#EFB668"/>
+    <SolidColorBrush x:Key="BackgroundLightGrayish" Color="#E2E5E6"/>
+    <SolidColorBrush x:Key="BackgroundVibrantPink" Color="#E05263"/>
+    <SolidColorBrush x:Key="BackgroundFreshGreen" Color="#53E064"/>
+    <SolidColorBrush x:Key="BackgroundGrayishBlue" Color="#919A9C"/>
+    <SolidColorBrush x:Key="BackgroundDarkSlate" Color="#102533"/>
+    <SolidColorBrush x:Key="BackgroundDunklesMarineblau" Color="#090B32"/>
     <SolidColorBrush x:Key="BackgroundTomatoRed" Color="#F06060"/>
-    <SolidColorBrush x:Key="BackgroundChampagnePink" Color="#F3EAC3"/>
+    <SolidColorBrush x:Key="BackgroundCharcoalGray" Color="#2F2C37"/>
     <SolidColorBrush x:Key="BackgroundLightCharcoalGray" Color="#4D4A55"/>
     <SolidColorBrush x:Key="BackgroundDarkCharcoalGray" Color="#110E19"/>
 
-    <SolidColorBrush x:Key="TextAquaMarine" Color="#8CBEBD"/>
+    <!-- Textfarben sortiert nach Farbton und Helligkeit -->
+
+    <SolidColorBrush x:Key="TextLightGrayish" Color="#E2E5E6"/>
+    <SolidColorBrush x:Key="TextSoftGreen" Color="#6DBD63"/>
+    <SolidColorBrush x:Key="TextDarkSoftGreen" Color="#57974F"/>
+    <SolidColorBrush x:Key="TextCrimsonRed" Color="#DC143C"/>
     <SolidColorBrush x:Key="TextOceanBlue" Color="#67A1A4"/>
     <SolidColorBrush x:Key="TextMintCream" Color="#E2F6F4"/>
-    <SolidColorBrush x:Key="TextCharcoalGray" Color="#2F2C37"/>
     <SolidColorBrush x:Key="TextSandyBrown" Color="#EFB668"/>
     <SolidColorBrush x:Key="TextTomatoRed" Color="#F06060"/>
     <SolidColorBrush x:Key="TextDarkTomatoRed" Color="#C04C4C"/>
-    <SolidColorBrush x:Key="TextChampagnePink" Color="#F3EAC3"/>
-    <SolidColorBrush x:Key="TextLightCharcoalGray" Color="#4D4A55"/>
-    <SolidColorBrush x:Key="TextDarkCharcoalGray" Color="#110E19"/>
+
 </ResourceDictionary>

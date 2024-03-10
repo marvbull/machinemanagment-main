@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MMS.View;
 using MMSLib.Klassen;
 
 namespace MMS.ViewModel
@@ -9,11 +10,13 @@ namespace MMS.ViewModel
     {
         public ObservableCollection<dynamic> AuftraegeMitFacharbeitern { get; private set; } = new ObservableCollection<dynamic>();
 
+        public ICommand LoeschenCommand { get; private set; }
+
         public AuftragBearbeitenViewModel()
         {
             LoadData();
+            LoeschenCommand = new ViewModelCommand(param => this.OeffneAuftragLoeschenPopup());
         }
-
         private void LoadData()
         {
             var auftragBearbeiten = new AuftragBearbeiten(); // Stellen Sie sicher, dass AuftragBearbeiten Zugriff auf die DB hat
@@ -26,33 +29,16 @@ namespace MMS.ViewModel
         }
 
 
-        //public ICommand LoeschenCommand { get; }
-        //public ICommand BearbeitenCommand { get; }
+        private void OeffneAuftragLoeschenPopup()
+        {
+            var popupViewModel = new AuftragLoeschenViewModel();
+            var popupView = new AuftragLoeschenPopupView()
+            {
+                DataContext = popupViewModel
+            };
 
-        //public AuftragBearbeitenViewModel()
-        //{
-        //    LoeschenCommand = new ViewModelCommand(_ => LoescheAuftrag());
-        //    BearbeitenCommand = new ViewModelCommand(_ => BearbeiteAuftrag());
-        //    LoadData();
-        //}
-
-        //private void BearbeiteAuftrag()
-        //{
-        //    // Logik zum Bearbeiten
-        //}
-
-        //private void LoescheAuftrag()
-        //{
-        //    if (SelectedAuftrag != null)
-        //    {
-        //        // Logik zum Löschen des Auftrags, z.B. aus der Datenbank und aus AuftraegeMitFacharbeitern
-        //        AuftraegeMitFacharbeitern.Remove(SelectedAuftrag);
-        //        OnPropertyChanged(nameof(AuftraegeMitFacharbeitern));
-
-        //        // Eventuell muss hier die Datenbankaktualisierung hinzugefügt werden
-        //    }
-        //}
-
-
+            popupView.ShowDialog();
+        }
     }
+
 }

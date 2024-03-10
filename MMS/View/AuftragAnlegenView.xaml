@@ -15,13 +15,13 @@
                 <StackPanel Margin="5">
                     <Label Content="Nachname:" Foreground="{StaticResource TextMintCream}"/>
                     <ComboBox ItemsSource="{Binding FacharbeiterList}" DisplayMemberPath="FacharbeiterName"
-                              SelectedItem="{Binding SelectedFacharbeiter, Mode=TwoWay}" Margin="0,0,0,5" Foreground="{StaticResource TextMintCream}"/>
+                              SelectedItem="{Binding SelectedFacharbeiter, Mode=TwoWay}" Margin="0,0,0,5" />
 
                     <Label Content="Vorname:" Foreground="{StaticResource TextMintCream}"/>
-                    <TextBox Text="{Binding FacharbeiterVorname}" IsEnabled="False" Margin="0,0,0,5" Foreground="{StaticResource TextMintCream}"/>
+                    <TextBox Text="{Binding FacharbeiterVorname}" IsEnabled="False" Margin="0,0,0,5"/>
 
                     <Label Content="ID:" Foreground="{StaticResource TextMintCream}"/>
-                    <TextBox Text="{Binding SelectedFacharbeiterId}" IsEnabled="False" Foreground="{StaticResource TextMintCream}"/>
+                    <TextBox Text="{Binding SelectedFacharbeiterId}" IsEnabled="False" />
                 </StackPanel>
             </GroupBox>
 
@@ -30,10 +30,10 @@
                 <StackPanel Margin="5">
                     <Label Content="Maschinen Name:" Foreground="{StaticResource TextMintCream}"/>
                     <ComboBox ItemsSource="{Binding MaschinenList}" DisplayMemberPath="MaschinenName"
-                              SelectedItem="{Binding SelectedMaschine, Mode=TwoWay}" Margin="0,0,0,5" Foreground="{StaticResource TextMintCream}"/>
+                              SelectedItem="{Binding SelectedMaschine, Mode=TwoWay}" Margin="0,0,0,5" />
 
                     <Label Content="Maschinen ID:" Foreground="{StaticResource TextMintCream}"/>
-                    <TextBox Text="{Binding SelectedMaschinenId}" IsEnabled="False" Foreground="{StaticResource TextMintCream}"/>
+                    <TextBox Text="{Binding SelectedMaschinenId}" IsEnabled="False"/>
                 </StackPanel>
             </GroupBox>
 
@@ -41,10 +41,10 @@
             <GroupBox Header="Zeitplanung" Margin="0,0,0,10">
                 <StackPanel Margin="5">
                     <Label Content="Startdatum:" Foreground="{StaticResource TextMintCream}"/>
-                    <DatePicker SelectedDate="{Binding SelectedStart, Mode=TwoWay}" Margin="0,0,0,5" Foreground="{StaticResource TextMintCream}"/>
+                    <DatePicker SelectedDate="{Binding SelectedStart, Mode=TwoWay}" Margin="0,0,0,5" />
 
                     <Label Content="Dauer (Minuten):" Foreground="{StaticResource TextMintCream}"/>
-                    <TextBox Text="{Binding DauerInMinuten, Mode=TwoWay}" Foreground="{StaticResource TextMintCream}"/>
+                    <TextBox Text="{Binding DauerInMinuten, Mode=TwoWay}" />
                 </StackPanel>
             </GroupBox>
 
@@ -52,17 +52,18 @@
             <GroupBox Header="Details" Margin="0,0,0,10">
                 <StackPanel Margin="5">
                     <Label Content="Material:" Foreground="{StaticResource TextMintCream}"/>
-                    <TextBox Text="{Binding Material, Mode=TwoWay}" Margin="0,0,0,5" Foreground="{StaticResource TextMintCream}"/>
+                    <TextBox Text="{Binding Material, Mode=TwoWay}" Margin="0,0,0,5"/>
 
                     <Label Content="Beschreibung:" Foreground="{StaticResource TextMintCream}"/>
                     <TextBox VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MaxHeight="100"
-                             AcceptsReturn="True" Text="{Binding Beschreibung, Mode=TwoWay}" Foreground="{StaticResource TextMintCream}"/>
+                             AcceptsReturn="True" Text="{Binding Beschreibung, Mode=TwoWay}" />
                 </StackPanel>
             </GroupBox>
 
             <!-- Button und Statusmeldung -->
-            <Button Content="Auftrag anlegen" Command="{Binding AuftragAnlegenCommand}" Margin="5" HorizontalAlignment="Right" Padding="10,5"/>
-            <TextBlock Text="{Binding StatusMessage}" Foreground="Green" HorizontalAlignment="Center" Margin="5"/>
+            <Button Content="Auftrag anlegen" Command="{Binding AuftragAnlegenCommand}" Margin="5" HorizontalAlignment="Right" Padding="10,5" Style="{StaticResource okbtn}"/>
+            <TextBlock Text="{Binding SuccessMessage}" Foreground="{StaticResource TextDarkSoftGreen}" HorizontalAlignment="Center" Margin="5"/>
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="{StaticResource TextCrimsonRed}" HorizontalAlignment="Center" Margin="5"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

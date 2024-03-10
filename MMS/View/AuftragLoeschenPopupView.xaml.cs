@@ -11,17 +11,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MMS.View
 {
     /// <summary>
-    /// Interaktionslogik für AuftragBearbeitenView.xaml
+    /// Interaktionslogik für AuftragLoeschenPopupView.xaml
     /// </summary>
-    public partial class AuftragBearbeitenView : UserControl
+    public partial class AuftragLoeschenPopupView : Window
     {
-        public AuftragBearbeitenView()
+        public AuftragLoeschenPopupView()
         {
             InitializeComponent();
             DataContext = new AuftragBearbeitenViewModel();
