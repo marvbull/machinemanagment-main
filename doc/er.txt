@@ -1,0 +1,122 @@
+@startuml
+title MachineManagementSystem
+
+namespace MMSLib.Klassen {
+
+class DBConnect{
+    + Facharbeiter : <DBSet<Facharbeiter>
+    + Vorgesetzter : <DBSet<Vorgesetzter>
+    + LehrgangZuweisung : <DBSet<LehrgangZuweisung>
+    + Lehrgang : <DBSet<Lehrgang>
+    + Auftraege : <DBSet<Auftraege>
+    + AufgabenZuweisen : <DBSet<AufgabenZuweisen>
+    + Maschine : <DBSet<Maschine>
+}
+
+class Vorgesetzter{
+    + VorgesetzterID : int
+    + VorgesetzterName : string
+    + VorgesetzterVorname : string
+}
+
+class Facharbeiter{
+    + FacharbeiterID : int
+    + FacharbeiterName : string
+    + FacharbeiterVorname : string
+}
+
+
+class Maschine{
+    + MaschinenID : int
+    + MaschinenName : string
+    + Material : string
+    + MaschinenStatus : bool
+    + Auftragsnummer : int?
+}
+
+class Auftraege{
+    + AuftragsID : int
+    + Beschreibung : string
+    + MaschinenID : int
+    + Material : string
+    + Abgabe : DateTime
+    + Beginn : DateTime
+    + Dauer : int
+}
+
+class AufgabenZuweisen{
+    + AuftragsID : int
+    + FacharbeiterID : string
+    + VorgesetzterID : int
+    + Eintrag : int
+}
+
+class Lehrgang{
+    + LehrgangID : int
+    + LehrgangName : string
+}
+
+class LehrgangZuweisung{
+    + LehrgangID : int
+    + FacharbeiterID : string
+    + EintragLehrgang : int
+}
+
+
+DBConnect --o Vorgesetzter : verwendet
+DBConnect --o Facharbeiter : verwendet
+DBConnect --o Maschine : verwendet
+DBConnect --o Auftraege : verwendet
+DBConnect --o AufgabenZuweisen : verwendet
+DBConnect --o Lehrgang : verwendet
+DBConnect --o LehrgangZuweisung : verwendet
+
+ class AuftragAnzeigen {
+        - _context : DBConnect
+        + Async : LoadAufträgeForFacharbeiter
+    }
+    
+AuftragAnzeigen --> DBConnect : verwendet
+
+class AbgabeCompare {
+    - _context : DBConnect
+    + AbgabeCompare(context : DBConnect)
+    + Async : LoescheAbgelaufeneAuftraege() : Task
+    }
+
+AbgabeCompare --> DBConnect : verwendet
+
+class AuftragBearbeiten {
+    - _context : DBConnect
+    + GetAuftraegeMitFacharbeitern(): List<dynamic>
+    + Async : AuftragLeoeschen()
+    }
+
+AbgabeCompare --> DBConnect : verwendet
+    
+class MaschinenÜberschneidung {
+    -_context : DBConnect
+    +MaschinenÜberschneidung(context: DBConnect)
+    +IstMaschineVerfuegbar : Task<bool>
+    }
+    
+MaschinenÜberschneidung --> DBConnect : verwendet
+
+
+class NächstesDatum {
+    -_context : DBConnect
+    +NaechstesDatum(context: DBConnect)
+    +FindeNächstesVerfügbaresZeitfenster(): Task<DateTime?>
+}
+
+NächstesDatum --> DBConnect : verwendet
+
+
+
+class AuftragAnlegen{
+    + VorgesetzterID : int
+    + VorgesetzterName : string
+    + VorgesetzterVorname : string
+    }
+}
+@enduml
