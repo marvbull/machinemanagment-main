@@ -1,82 +1,50 @@
-# MachineManagement
+# 🛠️ MachineManagement
 
-## Project Overview
+## 📖 Project Overview
 
-**MachineManagement** is a project that was initially developed during vocational training and later revisited and improved during academic studies at the **DHBW (Baden-Wuerttemberg Cooperative State University)**. The goal of the project is to optimize the management and scheduling of machines in a training workshop environment.
+This project was originally developed during a vocational training program and later extended and refined during academic studies at the **DHBW (Baden-Wuerttemberg Cooperative State University)**.  
+It is a machine management tool designed for **training workshops** to improve **machine assignment**, **visualize machine utilization**, and **relieve instructors** through automation and clear planning tools.
 
-It provides a centralized platform to:
+The focus was on developing a practical, responsive, and intuitive interface using modern .NET technologies.
 
-- Assign production jobs to available machines  
-- Visualize the current and upcoming machine workload  
-- Relieve instructors from manual planning tasks  
-- Gain a clear overview of all machines and their status
+## 📂 Repository Structure
 
-This system helps improve machine utilization and planning transparency.
+- `src/` – Core WPF application (C#, .NET 7.0, Entity Framework)  
+- `doc/` – Documentation, concept drafts, and planning
 
----
+## ⚙️ Technologies Used
 
-## Key Features
+- **C# / .NET 7.0** – Main application logic (WPF)  
+- **WPF (Windows Presentation Foundation)** – GUI for machine/job management  
+- **Entity Framework Core** – Database access (SQL Server)  
+- **FontAwesome.Sharp** – UI icons and styling  
+- **Microsoft SQL Server** – Backend database system
 
-- Assign tasks and jobs to machines  
-- Visual utilization dashboard per machine  
-- Instructor dashboard for full overview  
-- Improved planning and workload distribution
+> 🔧 Make sure to install the following NuGet packages **exactly in version 7.0.1** for compatibility:
+>
+> ```bash
+> Install-Package Microsoft.EntityFramework.SqlServer -Version 7.0.1  
+> Install-Package Microsoft.EntityFrameworkCore -Version 7.0.1  
+> Install-Package Microsoft.EntityFramework -Version 7.0.1  
+> Install-Package FontAwesome.Sharp -Version 7.0.1
+> ```
 
----
+## 🚀 How It Works
 
-## Technologies Used
+Instructors assign jobs to available machines and monitor machine utilization live.  
+The system helps to distribute workloads evenly and visualize bottlenecks or idle machines.
 
-- **C#**
-- **.NET 7.0**
-- **WPF (Windows Presentation Foundation)**
-- **Entity Framework Core**
-- **Microsoft SQL Server**
-- **FontAwesome.Sharp** (icon library)
+- Central job overview with real-time status  
+- Visual machine occupancy  
+- Simplified workflow for instructors  
+- Reduces planning effort in training environments
 
----
+## ✅ Project Status
 
-## Getting Started
+✅ **Completed and functional**  
+The system is stable and performs job assignment and utilization tracking as intended.  
+Ready for further extension (e.g., web interface, mobile view, reporting).
 
-### Requirements
+## 📄 License
 
-- Visual Studio 2022 or newer  
-- .NET 7.0 SDK  
-- SQL Server (local or remote)
-
-### Required NuGet Packages
-
-⚠️ Make sure to install **exactly version 7.0.1** of the following packages to ensure .NET 7 compatibility:
-
-```bash
-Install-Package Microsoft.EntityFramework.SqlServer -Version 7.0.1
-Install-Package Microsoft.EntityFrameworkCore -Version 7.0.1
-Install-Package Microsoft.EntityFramework -Version 7.0.1
-Install-Package FontAwesome.Sharp -Version 7.0.1
-```
-
----
-
-### How to Run the Project
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/machinemanagement-main.git
-   cd machinemanagement-main
-   ```
-
-2. Open the solution (`.sln`) file in Visual Studio.  
-3. Configure your database connection in `appsettings.json`.  
-4. Apply the initial database migration:
-
-   ```bash
-   Update-Database
-   ```
-
-5. Press **F5** or click **Start** to launch the application.
-
----
-
-## License
-
-This project is licensed under the **MIT License**.
+This project is licensed under the **MIT License** – see the [LICENSE](./LICENSE) file for details.
