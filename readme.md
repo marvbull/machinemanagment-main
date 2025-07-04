@@ -1,4 +1,4 @@
-# 🛠️ MachineManagement
+# 🛠️ Machine Management System
 
 ## 📖 Project Overview
 
